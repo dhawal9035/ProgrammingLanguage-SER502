@@ -1,0 +1,7 @@
+while(i == 0){
+    i = i-1
+    z = z-x
+    a = a+b*c
+}
+
+println(i)
