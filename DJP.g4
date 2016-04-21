@@ -4,7 +4,7 @@
  
 grammar DJP;
 
-body: (statement | functionCall)* expression? ;
+body: (statement | functionDeclaration)* expression? ;
 
 statement
 :
@@ -44,9 +44,15 @@ whileStat
 : 'while' '(' whileEx=expression ')' '{' whileBody=body '}'
 ;
 
-functionCall : 'func' Identifier '(' variableDeclarationList? ')' '{' body '}';
+functionDeclaration : 'func' Identifier '(' para=parameterList ')' '{' funcBody=body '}';
 
-variableDeclarationList : variableDeclaration (',' variableDeclaration)*;
+parameterList : paraDec+=parameterDeclaration (',' paraDec+=parameterDeclaration)*;
+
+parameterDeclaration : Type = type ident = Identifier ;
+
+variableDeclaration: Type=type assign=assignment ;
+
+functionCall: Identifier '(' expression (',' expression)* ')' ;
 
 expression :
 	left=expression DIV right=expression            #div
@@ -65,9 +71,8 @@ expression :
 	| Boolean                                       #bool
 	| Identifier                                    #ident
 	| Digit                                         #digit
+	| functionCall                                  #funCall
 ;
-
-variableDeclaration: Type=type assign=assignment ;
 
 type: 'Boolean' | 'Num' ;
 
