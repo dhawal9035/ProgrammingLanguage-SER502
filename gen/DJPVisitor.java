@@ -64,17 +64,35 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileStat(DJPParser.WhileStatContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DJPParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DJPParser#parameterList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterList(DJPParser.ParameterListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DJPParser#parameterDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameterDeclaration(DJPParser.ParameterDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DJPParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DJPParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionCall(DJPParser.FunctionCallContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link DJPParser#variableDeclarationList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableDeclarationList(DJPParser.VariableDeclarationListContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code add}
 	 * labeled alternative in {@link DJPParser#expression}.
@@ -132,6 +150,13 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEq(DJPParser.EqContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunCall(DJPParser.FunCallContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code gt}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree
@@ -187,12 +212,6 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDigit(DJPParser.DigitContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link DJPParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DJPParser#type}.
 	 * @param ctx the parse tree

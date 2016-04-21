@@ -97,6 +97,46 @@ public interface DJPListener extends ParseTreeListener {
 	 */
 	void exitWhileStat(DJPParser.WhileStatContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DJPParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DJPParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DJPParser#parameterList}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterList(DJPParser.ParameterListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DJPParser#parameterList}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterList(DJPParser.ParameterListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DJPParser#parameterDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameterDeclaration(DJPParser.ParameterDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DJPParser#parameterDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameterDeclaration(DJPParser.ParameterDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DJPParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DJPParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DJPParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
@@ -106,16 +146,6 @@ public interface DJPListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCall(DJPParser.FunctionCallContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DJPParser#variableDeclarationList}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableDeclarationList(DJPParser.VariableDeclarationListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DJPParser#variableDeclarationList}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableDeclarationList(DJPParser.VariableDeclarationListContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code add}
 	 * labeled alternative in {@link DJPParser#expression}.
@@ -213,6 +243,18 @@ public interface DJPListener extends ParseTreeListener {
 	 */
 	void exitEq(DJPParser.EqContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunCall(DJPParser.FunCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code funCall}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunCall(DJPParser.FunCallContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code gt}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree
@@ -308,16 +350,6 @@ public interface DJPListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDigit(DJPParser.DigitContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DJPParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DJPParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableDeclaration(DJPParser.VariableDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DJPParser#type}.
 	 * @param ctx the parse tree

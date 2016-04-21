@@ -1,9 +1,12 @@
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
+
 import java.util.Iterator;
 
 /**
  * Created by Dhawal Soni on 4/19/2016.
  */
 public class MyCompiler extends DJPBaseVisitor {
+    int ifCounter = 1, elseCounter = 1;
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
         //System.out.println("In Body");
@@ -141,8 +144,7 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitType(DJPParser.TypeContext ctx) {
-        System.out.println("In type");
-        visitChildren(ctx);
+        System.out.println("Data type:"+ctx.getChild(0));
         return null;
     }
 
@@ -169,7 +171,7 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitIfStat(DJPParser.IfStatContext ctx) {
         visit(ctx.ie);
-        System.out.println("if true");
+        System.out.println("if true "+ ifCounter++);
         visit(ctx.iftrue);
         System.out.println("Skip Else");
         System.out.println("GO TO- End If");
@@ -185,7 +187,7 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitElseStat(DJPParser.ElseStatContext ctx) {
-        System.out.println("else");
+        System.out.println("else "+ elseCounter++);
         visit(ctx.elsetrue);
         System.out.println("Else Ends");
         System.out.println("End if");
@@ -201,4 +203,40 @@ public class MyCompiler extends DJPBaseVisitor {
         System.out.println("GO To While");
         return null;
     }
+
+    @Override
+    public Object visitFunctionCall(DJPParser.FunctionCallContext ctx) {
+        visitChildren(ctx);
+        System.out.println("GO TO "+ctx.getChild(0).getText());
+
+        return null;
+    }
+
+    @Override
+    public Object visitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx) {
+        System.out.println("Function Name: "+ctx.getChild(1).getText());
+        System.out.println("Parameters Start");
+        //System.out.println(ctx.para.size());
+        visit(ctx.para);
+        System.out.println("Parameters End");
+        System.out.println("Function Body Starts");
+        visit(ctx.funcBody);
+        System.out.println("Function Body Ends");
+        return null;
+    }
+
+    @Override
+    public Object visitParameterList(DJPParser.ParameterListContext ctx) {
+        System.out.println("No of parameters:"+ctx.paraDec.size());
+        visitChildren(ctx);
+        return null;
+    }
+
+    @Override
+    public Object visitParameterDeclaration(DJPParser.ParameterDeclarationContext ctx) {
+        visitChildren(ctx);
+        System.out.println("STORE "+ctx.getChild(1).getText());
+        return null;
+    }
+
 }

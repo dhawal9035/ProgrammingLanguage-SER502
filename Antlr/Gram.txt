@@ -1,7 +1,7 @@
-while(i == 0){
-    i = i-1
-    z = z-x
-    a = a+b*c
+func newFunction (Num i,Num j,Num k) {
+    i = 10
+    var = false
+    return i
 }
 
-println(i)
+newFunction(11,12,13)
