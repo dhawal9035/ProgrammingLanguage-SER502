@@ -1,0 +1,23 @@
+Program Body begins
+Function Name: newFunc
+Parameters Start
+No of parameters:2
+Data type:Num
+STORE i
+Data type:Num
+STORE x
+Parameters End
+Function Body Starts
+PUSH 1
+PUSH 2
+ADD
+STORE a
+PUSH 2
+PUSH 3
+ADD
+STORE b
+Function Body Ends
+PUSH 1
+PUSH 2
+GO TO newFunc
+Program Body ends
