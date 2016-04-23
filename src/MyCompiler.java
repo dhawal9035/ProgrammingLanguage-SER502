@@ -1,5 +1,6 @@
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
 
+import java.io.*;
 import java.util.Iterator;
 
 /**
@@ -7,6 +8,11 @@ import java.util.Iterator;
  */
 public class MyCompiler extends DJPBaseVisitor {
     int ifCounter = 1, elseCounter = 1;
+    StringBuilder sb = new StringBuilder();
+
+    //File file = new File("Intermediate.txt");
+
+
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
         //System.out.println("In Body");
@@ -26,6 +32,7 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitVariableDeclaration(DJPParser.VariableDeclarationContext ctx) {
         //System.out.println("IN Variable Dec");
         visit(ctx.assign);
+        sb.append("STORE ").append(ctx.Type.getText());
         //System.out.println("STORE "+ctx.Type.getText());
         return null;
     }
@@ -34,117 +41,134 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitAssignment(DJPParser.AssignmentContext ctx) {
         //System.out.println("In assignmnet");
-        visit(ctx.e);
-        System.out.println("STORE " +ctx.getChild(0).getText());
+        if(ctx.e != null)
+            visit(ctx.e);
+        sb.append("\nSTORE ").append(ctx.getChild(0).getText());
+        //System.out.println("STORE " +ctx.getChild(0).getText());
         return null;
         }
 
     @Override
     public Object visitAdd(DJPParser.AddContext ctx) {
         visitChildren(ctx);
-        System.out.println("ADD");
+        sb.append("\nADD");
+        //System.out.println("ADD");
         return null;
     }
 
     @Override
     public Object visitSub(DJPParser.SubContext ctx) {
         visitChildren(ctx);
-        System.out.println("SUB");
+        sb.append("\nSUB");
+        //System.out.println("SUB");
         return null;
     }
 
     @Override
     public Object visitDiv(DJPParser.DivContext ctx) {
         visitChildren(ctx);
-        System.out.println("DIV");
+        //System.out.println("DIV");
+        sb.append("\nDIV");
         return null;
     }
 
     @Override
     public Object visitMul(DJPParser.MulContext ctx) {
         visitChildren(ctx);
-        System.out.println("MUL");
+        sb.append("\nMUL");
+        //System.out.println("MUL");
         return null;
     }
 
     @Override
     public Object visitGt(DJPParser.GtContext ctx) {
         visitChildren(ctx);
-        System.out.println("GT");
+        sb.append("\nGT");
+        //System.out.println("GT");
         return null;
     }
 
     @Override
     public Object visitGte(DJPParser.GteContext ctx) {
         visitChildren(ctx);
-        System.out.println("GTE");
+        sb.append("\nGTE");
+        //System.out.println("GTE");
         return null;
     }
 
     @Override
     public Object visitLt(DJPParser.LtContext ctx) {
         visitChildren(ctx);
-        System.out.println("LT");
+        sb.append("\nLT");
+        //System.out.println("LT");
         return null;
     }
 
     @Override
     public Object visitLte(DJPParser.LteContext ctx) {
         visitChildren(ctx);
-        System.out.println("LTE");
+        sb.append("\nLTE");
+        //System.out.println("LTE");
         return null;
     }
 
     @Override
     public Object visitEq(DJPParser.EqContext ctx) {
         visitChildren(ctx);
-        System.out.println("EQ");
+        sb.append("\nEQ");
+        //System.out.println("EQ");
         return null;
     }
 
     @Override
     public Object visitNe(DJPParser.NeContext ctx) {
         visitChildren(ctx);
-        System.out.println("NE");
+        sb.append("\nNE");
+        //System.out.println("NE");
         return null;
     }
 
     @Override
     public Object visitAnd(DJPParser.AndContext ctx) {
         visitChildren(ctx);
-        System.out.println("AND");
+        sb.append("\nAND");
+        //System.out.println("AND");
         return null;
     }
 
     @Override
     public Object visitOr(DJPParser.OrContext ctx) {
         visitChildren(ctx);
-        System.out.println("OR");
+        sb.append("\nOR");
+        //System.out.println("OR");
         return null;
     }
 
     @Override
     public Object visitBool(DJPParser.BoolContext ctx) {
         visitChildren(ctx);
-        System.out.println("BOOL");
+        //System.out.println("BOOL");
         return null;
     }
 
     @Override
     public Object visitIdent(DJPParser.IdentContext ctx) {
-        System.out.println("LOAD " + ctx.getChild(0).getText());
+        sb.append("\nLOAD ").append(ctx.getChild(0).getText());
+        //System.out.println("LOAD " + ctx.getChild(0).getText());
         return null;
     }
 
     @Override
     public Object visitDigit(DJPParser.DigitContext ctx) {
-        System.out.println("PUSH " + ctx.getChild(0).getText());
+        sb.append("\nPUSH ").append(ctx.getChild(0).getText());
+        //System.out.println("PUSH " + ctx.getChild(0).getText());
         return null;
     }
 
     @Override
     public Object visitType(DJPParser.TypeContext ctx) {
-        System.out.println("Data type:"+ctx.getChild(0));
+        sb.append("\nData type:").append(ctx.getChild(0));
+        //System.out.println("Data type:"+ctx.getChild(0));
         return null;
     }
 
@@ -152,18 +176,21 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitInbuiltFuncCall(DJPParser.InbuiltFuncCallContext ctx) {
         if(ctx.getChild(0).getText().equalsIgnoreCase("println")){
             visit(ctx.prExpLn);
-            System.out.println("PrintLN -> New Line");
+            sb.append("\nPrintLN -> New Line");
+            //System.out.println("PrintLN -> New Line");
         } else {
             visit(ctx.prExp);
-            System.out.println("Print -> Same Line");
+            sb.append("\nPrint -> Same Line");
+            //System.out.println("Print -> Same Line");
         }
-        System.out.println("Printed");
+        sb.append("\nPRINTLN");
         return null;
     }
 
     @Override
     public Object visitIfStatement(DJPParser.IfStatementContext ctx) {
-        System.out.println("IF");
+        sb.append("\nIF");
+        //System.out.println("IF");
         visitChildren(ctx);
         return null;
     }
@@ -171,10 +198,13 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitIfStat(DJPParser.IfStatContext ctx) {
         visit(ctx.ie);
-        System.out.println("if true "+ ifCounter++);
+        sb.append("\nif true ").append(ifCounter++);
+        //System.out.println("if true "+ ifCounter++);
         visit(ctx.iftrue);
-        System.out.println("Skip Else");
-        System.out.println("GO TO- End If");
+        sb.append("\nSkip Else");
+        sb.append("\nGo to - end if");
+        //System.out.println("Skip Else");
+        //System.out.println("GO TO- End If");
         return null;
     }
 
@@ -187,47 +217,60 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitElseStat(DJPParser.ElseStatContext ctx) {
-        System.out.println("else "+ elseCounter++);
+        sb.append("\nelse ").append( elseCounter++);
+        //System.out.println("else "+ elseCounter++);
         visit(ctx.elsetrue);
-        System.out.println("Else Ends");
-        System.out.println("End if");
+        sb.append("\nElse Ends");
+        sb.append("\nEnd if");
+        //System.out.println("Else Ends");
+        //System.out.println("End if");
         return null;
     }
 
     @Override
     public Object visitWhileStat(DJPParser.WhileStatContext ctx) {
-        System.out.println("While");
+        //System.out.println("While");
+        sb.append("\nWhile");
         visit(ctx.whileEx);
-        System.out.println("if True execute body");
+        //System.out.println("if True execute body");
+        sb.append("\nif True execute body");
         visit(ctx.whileBody);
-        System.out.println("GO To While");
+        //System.out.println("GO To While");
+        sb.append("\nGO To While");
         return null;
     }
 
     @Override
     public Object visitFunctionCall(DJPParser.FunctionCallContext ctx) {
         visitChildren(ctx);
-        System.out.println("GO TO "+ctx.getChild(0).getText());
+        sb.append("\nGO TO ").append(ctx.getChild(0).getText());
+        //System.out.println("GO TO "+ctx.getChild(0).getText());
 
         return null;
     }
 
     @Override
     public Object visitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx) {
-        System.out.println("Function Name: "+ctx.getChild(1).getText());
-        System.out.println("Parameters Start");
+        sb.append("\nFunction Name: ").append(ctx.getChild(1).getText());
+        sb.append("\nParameters Start");
+        //System.out.println("Function Name: "+ctx.getChild(1).getText());
+        //System.out.println("Parameters Start");
         //System.out.println(ctx.para.size());
         visit(ctx.para);
-        System.out.println("Parameters End");
-        System.out.println("Function Body Starts");
+        sb.append("\nParameters End");
+        sb.append("\nFunction Body Starts");
+        //System.out.println("Parameters End");
+        //System.out.println("Function Body Starts");
         visit(ctx.funcBody);
-        System.out.println("Function Body Ends");
+        sb.append("\nFunction Body Ends");
+        //System.out.println("Function Body Ends");
         return null;
     }
 
     @Override
     public Object visitParameterList(DJPParser.ParameterListContext ctx) {
-        System.out.println("No of parameters:"+ctx.paraDec.size());
+        sb.append("\nNo of parameters:").append(ctx.paraDec.size());
+        //System.out.println("No of parameters:"+ctx.paraDec.size());
         visitChildren(ctx);
         return null;
     }
@@ -235,7 +278,8 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitParameterDeclaration(DJPParser.ParameterDeclarationContext ctx) {
         visitChildren(ctx);
-        System.out.println("STORE "+ctx.getChild(1).getText());
+        sb.append("\nSTORE ").append(ctx.getChild(1).getText());
+        //System.out.println("STORE "+ctx.getChild(1).getText());
         return null;
     }
 

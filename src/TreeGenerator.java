@@ -19,10 +19,8 @@ public class TreeGenerator {
         CommonTokenStream cts = new CommonTokenStream(lexer);
         DJPParser parser = new DJPParser(cts);
         ParseTree parseTree = parser.body();
-
         //Generate Tree
         showTree("Antlr/Gram.txt");
-
         new MyCompiler().visit(parseTree);
     }
     public static void showTree(String filename) throws IOException {

@@ -17,7 +17,7 @@ statement
 ;
 
 assignment
-: var = Identifier '=' e = expression
+: var = Identifier ('=' e = expression)?
 ;
 
 inbuiltFuncCall

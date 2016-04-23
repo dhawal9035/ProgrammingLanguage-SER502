@@ -1,7 +1,9 @@
-func newFunction (Num i,Num j,Num k) {
-    i = 10
-    var = false
-    return i
+Num x
+i = x
+Num fact = 1
+while(i > 1) {
+    fact = fact * i
+    i = i-1
 }
 
-newFunction(11,12,13)
+print(fact)

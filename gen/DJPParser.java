@@ -329,15 +329,23 @@ public class DJPParser extends Parser {
 	public final AssignmentContext assignment() throws RecognitionException {
 		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_assignment);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(50);
 			((AssignmentContext)_localctx).var = match(Identifier);
-			setState(51);
-			match(ASSIGNMENT);
-			setState(52);
-			((AssignmentContext)_localctx).e = expression(0);
+			setState(53);
+			_la = _input.LA(1);
+			if (_la==ASSIGNMENT) {
+				{
+				setState(51);
+				match(ASSIGNMENT);
+				setState(52);
+				((AssignmentContext)_localctx).e = expression(0);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -381,45 +389,45 @@ public class DJPParser extends Parser {
 		enterRule(_localctx, 6, RULE_inbuiltFuncCall);
 		int _la;
 		try {
-			setState(66);
+			setState(67);
 			switch (_input.LA(1)) {
 			case T__0:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(54);
-				match(T__0);
 				setState(55);
+				match(T__0);
+				setState(56);
 				match(OPENBRACKET);
-				setState(57);
+				setState(58);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << Boolean) | (1L << Identifier) | (1L << Digit))) != 0)) {
 					{
-					setState(56);
+					setState(57);
 					((InbuiltFuncCallContext)_localctx).prExpLn = expression(0);
 					}
 				}
 
-				setState(59);
+				setState(60);
 				match(CLOSEBRACKET);
 				}
 				break;
 			case T__1:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(60);
-				match(T__1);
 				setState(61);
+				match(T__1);
+				setState(62);
 				match(OPENBRACKET);
-				setState(63);
+				setState(64);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << Boolean) | (1L << Identifier) | (1L << Digit))) != 0)) {
 					{
-					setState(62);
+					setState(63);
 					((InbuiltFuncCallContext)_localctx).prExp = expression(0);
 					}
 				}
 
-				setState(65);
+				setState(66);
 				match(CLOSEBRACKET);
 				}
 				break;
@@ -477,27 +485,27 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
+			setState(69);
 			ifStat();
-			setState(72);
+			setState(73);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(69);
+				setState(70);
 				elseIfStat();
 				}
 				}
-				setState(74);
+				setState(75);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(76);
+			setState(77);
 			_la = _input.LA(1);
 			if (_la==T__4) {
 				{
-				setState(75);
+				setState(76);
 				elseStat();
 				}
 			}
@@ -549,19 +557,19 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(78);
-			match(T__2);
 			setState(79);
-			match(OPENBRACKET);
+			match(T__2);
 			setState(80);
-			((IfStatContext)_localctx).ie = expression(0);
+			match(OPENBRACKET);
 			setState(81);
-			match(CLOSEBRACKET);
+			((IfStatContext)_localctx).ie = expression(0);
 			setState(82);
-			match(OPENBRACE);
+			match(CLOSEBRACKET);
 			setState(83);
-			((IfStatContext)_localctx).iftrue = body();
+			match(OPENBRACE);
 			setState(84);
+			((IfStatContext)_localctx).iftrue = body();
+			setState(85);
 			match(CLOSEBRACE);
 			}
 		}
@@ -610,19 +618,19 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
-			match(T__3);
 			setState(87);
-			match(OPENBRACKET);
+			match(T__3);
 			setState(88);
-			((ElseIfStatContext)_localctx).elseifex = expression(0);
+			match(OPENBRACKET);
 			setState(89);
-			match(CLOSEBRACKET);
+			((ElseIfStatContext)_localctx).elseifex = expression(0);
 			setState(90);
-			match(OPENBRACE);
+			match(CLOSEBRACKET);
 			setState(91);
-			((ElseIfStatContext)_localctx).ifelsetrue = body();
+			match(OPENBRACE);
 			setState(92);
+			((ElseIfStatContext)_localctx).ifelsetrue = body();
+			setState(93);
 			match(CLOSEBRACE);
 			}
 		}
@@ -667,13 +675,13 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(94);
-			match(T__4);
 			setState(95);
-			match(OPENBRACE);
+			match(T__4);
 			setState(96);
-			((ElseStatContext)_localctx).elsetrue = body();
+			match(OPENBRACE);
 			setState(97);
+			((ElseStatContext)_localctx).elsetrue = body();
+			setState(98);
 			match(CLOSEBRACE);
 			}
 		}
@@ -722,19 +730,19 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99);
-			match(T__5);
 			setState(100);
-			match(OPENBRACKET);
+			match(T__5);
 			setState(101);
-			((WhileStatContext)_localctx).whileEx = expression(0);
+			match(OPENBRACKET);
 			setState(102);
-			match(CLOSEBRACKET);
+			((WhileStatContext)_localctx).whileEx = expression(0);
 			setState(103);
-			match(OPENBRACE);
+			match(CLOSEBRACKET);
 			setState(104);
-			((WhileStatContext)_localctx).whileBody = body();
+			match(OPENBRACE);
 			setState(105);
+			((WhileStatContext)_localctx).whileBody = body();
+			setState(106);
 			match(CLOSEBRACE);
 			}
 		}
@@ -784,21 +792,21 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
-			match(T__6);
 			setState(108);
-			match(Identifier);
+			match(T__6);
 			setState(109);
-			match(OPENBRACKET);
+			match(Identifier);
 			setState(110);
-			((FunctionDeclarationContext)_localctx).para = parameterList();
+			match(OPENBRACKET);
 			setState(111);
-			match(CLOSEBRACKET);
+			((FunctionDeclarationContext)_localctx).para = parameterList();
 			setState(112);
-			match(OPENBRACE);
+			match(CLOSEBRACKET);
 			setState(113);
-			((FunctionDeclarationContext)_localctx).funcBody = body();
+			match(OPENBRACE);
 			setState(114);
+			((FunctionDeclarationContext)_localctx).funcBody = body();
+			setState(115);
 			match(CLOSEBRACE);
 			}
 		}
@@ -848,23 +856,23 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(116);
+			setState(117);
 			((ParameterListContext)_localctx).parameterDeclaration = parameterDeclaration();
 			((ParameterListContext)_localctx).paraDec.add(((ParameterListContext)_localctx).parameterDeclaration);
-			setState(121);
+			setState(122);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(117);
-				match(COMMA);
 				setState(118);
+				match(COMMA);
+				setState(119);
 				((ParameterListContext)_localctx).parameterDeclaration = parameterDeclaration();
 				((ParameterListContext)_localctx).paraDec.add(((ParameterListContext)_localctx).parameterDeclaration);
 				}
 				}
-				setState(123);
+				setState(124);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -913,9 +921,9 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(124);
-			((ParameterDeclarationContext)_localctx).Type = type();
 			setState(125);
+			((ParameterDeclarationContext)_localctx).Type = type();
+			setState(126);
 			((ParameterDeclarationContext)_localctx).ident = match(Identifier);
 			}
 		}
@@ -964,9 +972,9 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127);
-			((VariableDeclarationContext)_localctx).Type = type();
 			setState(128);
+			((VariableDeclarationContext)_localctx).Type = type();
+			setState(129);
 			((VariableDeclarationContext)_localctx).assign = assignment();
 			}
 		}
@@ -1015,29 +1023,29 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130);
-			match(Identifier);
 			setState(131);
-			match(OPENBRACKET);
+			match(Identifier);
 			setState(132);
+			match(OPENBRACKET);
+			setState(133);
 			expression(0);
-			setState(137);
+			setState(138);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(133);
-				match(COMMA);
 				setState(134);
+				match(COMMA);
+				setState(135);
 				expression(0);
 				}
 				}
-				setState(139);
+				setState(140);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(140);
+			setState(141);
 			match(CLOSEBRACKET);
 			}
 		}
@@ -1468,17 +1476,17 @@ public class DJPParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(149);
-			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			setState(150);
+			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				{
 				_localctx = new ReturnContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(143);
-				match(T__7);
 				setState(144);
+				match(T__7);
+				setState(145);
 				expression(5);
 				}
 				break;
@@ -1487,7 +1495,7 @@ public class DJPParser extends Parser {
 				_localctx = new BoolContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(145);
+				setState(146);
 				match(Boolean);
 				}
 				break;
@@ -1496,7 +1504,7 @@ public class DJPParser extends Parser {
 				_localctx = new IdentContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(146);
+				setState(147);
 				match(Identifier);
 				}
 				break;
@@ -1505,7 +1513,7 @@ public class DJPParser extends Parser {
 				_localctx = new DigitContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(147);
+				setState(148);
 				match(Digit);
 				}
 				break;
@@ -1514,32 +1522,32 @@ public class DJPParser extends Parser {
 				_localctx = new FunCallContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(148);
+				setState(149);
 				functionCall();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(189);
+			setState(190);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(187);
-					switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+					setState(188);
+					switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 					case 1:
 						{
 						_localctx = new DivContext(new ExpressionContext(_parentctx, _parentState));
 						((DivContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(151);
-						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
 						setState(152);
-						match(DIV);
+						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
 						setState(153);
+						match(DIV);
+						setState(154);
 						((DivContext)_localctx).right = expression(18);
 						}
 						break;
@@ -1548,11 +1556,11 @@ public class DJPParser extends Parser {
 						_localctx = new MulContext(new ExpressionContext(_parentctx, _parentState));
 						((MulContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(154);
-						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
 						setState(155);
-						match(MUL);
+						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
 						setState(156);
+						match(MUL);
+						setState(157);
 						((MulContext)_localctx).right = expression(17);
 						}
 						break;
@@ -1561,11 +1569,11 @@ public class DJPParser extends Parser {
 						_localctx = new AddContext(new ExpressionContext(_parentctx, _parentState));
 						((AddContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(157);
-						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(158);
-						match(ADD);
+						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(159);
+						match(ADD);
+						setState(160);
 						((AddContext)_localctx).right = expression(16);
 						}
 						break;
@@ -1574,11 +1582,11 @@ public class DJPParser extends Parser {
 						_localctx = new SubContext(new ExpressionContext(_parentctx, _parentState));
 						((SubContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(160);
-						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(161);
-						match(SUB);
+						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(162);
+						match(SUB);
+						setState(163);
 						((SubContext)_localctx).right = expression(15);
 						}
 						break;
@@ -1587,11 +1595,11 @@ public class DJPParser extends Parser {
 						_localctx = new GteContext(new ExpressionContext(_parentctx, _parentState));
 						((GteContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(163);
-						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(164);
-						match(GTE);
+						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(165);
+						match(GTE);
+						setState(166);
 						((GteContext)_localctx).right = expression(14);
 						}
 						break;
@@ -1600,11 +1608,11 @@ public class DJPParser extends Parser {
 						_localctx = new LteContext(new ExpressionContext(_parentctx, _parentState));
 						((LteContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(166);
-						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
 						setState(167);
-						match(LTE);
+						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
 						setState(168);
+						match(LTE);
+						setState(169);
 						((LteContext)_localctx).right = expression(13);
 						}
 						break;
@@ -1613,11 +1621,11 @@ public class DJPParser extends Parser {
 						_localctx = new GtContext(new ExpressionContext(_parentctx, _parentState));
 						((GtContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(169);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
 						setState(170);
-						match(GT);
+						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
 						setState(171);
+						match(GT);
+						setState(172);
 						((GtContext)_localctx).right = expression(12);
 						}
 						break;
@@ -1626,11 +1634,11 @@ public class DJPParser extends Parser {
 						_localctx = new LtContext(new ExpressionContext(_parentctx, _parentState));
 						((LtContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(172);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(173);
-						match(LT);
+						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(174);
+						match(LT);
+						setState(175);
 						((LtContext)_localctx).right = expression(11);
 						}
 						break;
@@ -1639,11 +1647,11 @@ public class DJPParser extends Parser {
 						_localctx = new EqContext(new ExpressionContext(_parentctx, _parentState));
 						((EqContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(175);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
 						setState(176);
-						match(EQUAL);
+						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
 						setState(177);
+						match(EQUAL);
+						setState(178);
 						((EqContext)_localctx).right = expression(10);
 						}
 						break;
@@ -1652,11 +1660,11 @@ public class DJPParser extends Parser {
 						_localctx = new NeContext(new ExpressionContext(_parentctx, _parentState));
 						((NeContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(178);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
 						setState(179);
-						match(NOTEQUALS);
+						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
 						setState(180);
+						match(NOTEQUALS);
+						setState(181);
 						((NeContext)_localctx).right = expression(9);
 						}
 						break;
@@ -1665,11 +1673,11 @@ public class DJPParser extends Parser {
 						_localctx = new AndContext(new ExpressionContext(_parentctx, _parentState));
 						((AndContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(181);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(182);
-						match(AND);
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(183);
+						match(AND);
+						setState(184);
 						((AndContext)_localctx).right = expression(8);
 						}
 						break;
@@ -1678,20 +1686,20 @@ public class DJPParser extends Parser {
 						_localctx = new OrContext(new ExpressionContext(_parentctx, _parentState));
 						((OrContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(184);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(185);
-						match(OR);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(186);
+						match(OR);
+						setState(187);
 						((OrContext)_localctx).right = expression(7);
 						}
 						break;
 					}
 					} 
 				}
-				setState(191);
+				setState(192);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,14,_ctx);
 			}
 			}
 		}
@@ -1733,7 +1741,7 @@ public class DJPParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(192);
+			setState(193);
 			_la = _input.LA(1);
 			if ( !(_la==T__8 || _la==T__9) ) {
 			_errHandler.recoverInline(this);
@@ -1791,67 +1799,67 @@ public class DJPParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3)\u00c5\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3)\u00c6\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\7"+
 		"\2%\n\2\f\2\16\2(\13\2\3\2\5\2+\n\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3\63\n\3"+
-		"\3\4\3\4\3\4\3\4\3\5\3\5\3\5\5\5<\n\5\3\5\3\5\3\5\3\5\5\5B\n\5\3\5\5\5"+
-		"E\n\5\3\6\3\6\7\6I\n\6\f\6\16\6L\13\6\3\6\5\6O\n\6\3\7\3\7\3\7\3\7\3\7"+
-		"\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\n\3"+
-		"\n\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
-		"\3\f\3\f\3\f\7\fz\n\f\f\f\16\f}\13\f\3\r\3\r\3\r\3\16\3\16\3\16\3\17\3"+
-		"\17\3\17\3\17\3\17\7\17\u008a\n\17\f\17\16\17\u008d\13\17\3\17\3\17\3"+
-		"\20\3\20\3\20\3\20\3\20\3\20\3\20\5\20\u0098\n\20\3\20\3\20\3\20\3\20"+
+		"\3\4\3\4\3\4\5\48\n\4\3\5\3\5\3\5\5\5=\n\5\3\5\3\5\3\5\3\5\5\5C\n\5\3"+
+		"\5\5\5F\n\5\3\6\3\6\7\6J\n\6\f\6\16\6M\13\6\3\6\5\6P\n\6\3\7\3\7\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t"+
+		"\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
+		"\13\3\13\3\f\3\f\3\f\7\f{\n\f\f\f\16\f~\13\f\3\r\3\r\3\r\3\16\3\16\3\16"+
+		"\3\17\3\17\3\17\3\17\3\17\7\17\u008b\n\17\f\17\16\17\u008e\13\17\3\17"+
+		"\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\5\20\u0099\n\20\3\20\3\20\3\20"+
 		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
 		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\7\20\u00be\n\20\f\20\16\20\u00c1\13\20\3\21\3\21"+
-		"\3\21\2\3\36\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\3\3\2\13\f\u00d3"+
-		"\2&\3\2\2\2\4\62\3\2\2\2\6\64\3\2\2\2\bD\3\2\2\2\nF\3\2\2\2\fP\3\2\2\2"+
-		"\16X\3\2\2\2\20`\3\2\2\2\22e\3\2\2\2\24m\3\2\2\2\26v\3\2\2\2\30~\3\2\2"+
-		"\2\32\u0081\3\2\2\2\34\u0084\3\2\2\2\36\u0097\3\2\2\2 \u00c2\3\2\2\2\""+
-		"%\5\4\3\2#%\5\24\13\2$\"\3\2\2\2$#\3\2\2\2%(\3\2\2\2&$\3\2\2\2&\'\3\2"+
-		"\2\2\'*\3\2\2\2(&\3\2\2\2)+\5\36\20\2*)\3\2\2\2*+\3\2\2\2+\3\3\2\2\2,"+
-		"\63\5\32\16\2-\63\5\6\4\2.\63\5\b\5\2/\63\5\n\6\2\60\63\5\22\n\2\61\63"+
-		"\5\36\20\2\62,\3\2\2\2\62-\3\2\2\2\62.\3\2\2\2\62/\3\2\2\2\62\60\3\2\2"+
-		"\2\62\61\3\2\2\2\63\5\3\2\2\2\64\65\7\16\2\2\65\66\7(\2\2\66\67\5\36\20"+
-		"\2\67\7\3\2\2\289\7\3\2\29;\7$\2\2:<\5\36\20\2;:\3\2\2\2;<\3\2\2\2<=\3"+
-		"\2\2\2=E\7%\2\2>?\7\4\2\2?A\7$\2\2@B\5\36\20\2A@\3\2\2\2AB\3\2\2\2BC\3"+
-		"\2\2\2CE\7%\2\2D8\3\2\2\2D>\3\2\2\2E\t\3\2\2\2FJ\5\f\7\2GI\5\16\b\2HG"+
-		"\3\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2KN\3\2\2\2LJ\3\2\2\2MO\5\20\t\2"+
-		"NM\3\2\2\2NO\3\2\2\2O\13\3\2\2\2PQ\7\5\2\2QR\7$\2\2RS\5\36\20\2ST\7%\2"+
-		"\2TU\7\"\2\2UV\5\2\2\2VW\7#\2\2W\r\3\2\2\2XY\7\6\2\2YZ\7$\2\2Z[\5\36\20"+
-		"\2[\\\7%\2\2\\]\7\"\2\2]^\5\2\2\2^_\7#\2\2_\17\3\2\2\2`a\7\7\2\2ab\7\""+
-		"\2\2bc\5\2\2\2cd\7#\2\2d\21\3\2\2\2ef\7\b\2\2fg\7$\2\2gh\5\36\20\2hi\7"+
-		"%\2\2ij\7\"\2\2jk\5\2\2\2kl\7#\2\2l\23\3\2\2\2mn\7\t\2\2no\7\16\2\2op"+
-		"\7$\2\2pq\5\26\f\2qr\7%\2\2rs\7\"\2\2st\5\2\2\2tu\7#\2\2u\25\3\2\2\2v"+
-		"{\5\30\r\2wx\7\36\2\2xz\5\30\r\2yw\3\2\2\2z}\3\2\2\2{y\3\2\2\2{|\3\2\2"+
-		"\2|\27\3\2\2\2}{\3\2\2\2~\177\5 \21\2\177\u0080\7\16\2\2\u0080\31\3\2"+
-		"\2\2\u0081\u0082\5 \21\2\u0082\u0083\5\6\4\2\u0083\33\3\2\2\2\u0084\u0085"+
-		"\7\16\2\2\u0085\u0086\7$\2\2\u0086\u008b\5\36\20\2\u0087\u0088\7\36\2"+
-		"\2\u0088\u008a\5\36\20\2\u0089\u0087\3\2\2\2\u008a\u008d\3\2\2\2\u008b"+
-		"\u0089\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008e\3\2\2\2\u008d\u008b\3\2"+
-		"\2\2\u008e\u008f\7%\2\2\u008f\35\3\2\2\2\u0090\u0091\b\20\1\2\u0091\u0092"+
-		"\7\n\2\2\u0092\u0098\5\36\20\7\u0093\u0098\7\r\2\2\u0094\u0098\7\16\2"+
-		"\2\u0095\u0098\7)\2\2\u0096\u0098\5\34\17\2\u0097\u0090\3\2\2\2\u0097"+
-		"\u0093\3\2\2\2\u0097\u0094\3\2\2\2\u0097\u0095\3\2\2\2\u0097\u0096\3\2"+
-		"\2\2\u0098\u00bf\3\2\2\2\u0099\u009a\f\23\2\2\u009a\u009b\7\34\2\2\u009b"+
-		"\u00be\5\36\20\24\u009c\u009d\f\22\2\2\u009d\u009e\7\33\2\2\u009e\u00be"+
-		"\5\36\20\23\u009f\u00a0\f\21\2\2\u00a0\u00a1\7\31\2\2\u00a1\u00be\5\36"+
-		"\20\22\u00a2\u00a3\f\20\2\2\u00a3\u00a4\7\32\2\2\u00a4\u00be\5\36\20\21"+
-		"\u00a5\u00a6\f\17\2\2\u00a6\u00a7\7\25\2\2\u00a7\u00be\5\36\20\20\u00a8"+
-		"\u00a9\f\16\2\2\u00a9\u00aa\7\26\2\2\u00aa\u00be\5\36\20\17\u00ab\u00ac"+
-		"\f\r\2\2\u00ac\u00ad\7\23\2\2\u00ad\u00be\5\36\20\16\u00ae\u00af\f\f\2"+
-		"\2\u00af\u00b0\7\24\2\2\u00b0\u00be\5\36\20\r\u00b1\u00b2\f\13\2\2\u00b2"+
-		"\u00b3\7\27\2\2\u00b3\u00be\5\36\20\f\u00b4\u00b5\f\n\2\2\u00b5\u00b6"+
-		"\7\30\2\2\u00b6\u00be\5\36\20\13\u00b7\u00b8\f\t\2\2\u00b8\u00b9\7\22"+
-		"\2\2\u00b9\u00be\5\36\20\n\u00ba\u00bb\f\b\2\2\u00bb\u00bc\7\21\2\2\u00bc"+
-		"\u00be\5\36\20\t\u00bd\u0099\3\2\2\2\u00bd\u009c\3\2\2\2\u00bd\u009f\3"+
-		"\2\2\2\u00bd\u00a2\3\2\2\2\u00bd\u00a5\3\2\2\2\u00bd\u00a8\3\2\2\2\u00bd"+
-		"\u00ab\3\2\2\2\u00bd\u00ae\3\2\2\2\u00bd\u00b1\3\2\2\2\u00bd\u00b4\3\2"+
-		"\2\2\u00bd\u00b7\3\2\2\2\u00bd\u00ba\3\2\2\2\u00be\u00c1\3\2\2\2\u00bf"+
-		"\u00bd\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\37\3\2\2\2\u00c1\u00bf\3\2\2"+
-		"\2\u00c2\u00c3\t\2\2\2\u00c3!\3\2\2\2\20$&*\62;ADJN{\u008b\u0097\u00bd"+
-		"\u00bf";
+		"\3\20\3\20\3\20\3\20\3\20\7\20\u00bf\n\20\f\20\16\20\u00c2\13\20\3\21"+
+		"\3\21\3\21\2\3\36\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\3\3\2\13"+
+		"\f\u00d5\2&\3\2\2\2\4\62\3\2\2\2\6\64\3\2\2\2\bE\3\2\2\2\nG\3\2\2\2\f"+
+		"Q\3\2\2\2\16Y\3\2\2\2\20a\3\2\2\2\22f\3\2\2\2\24n\3\2\2\2\26w\3\2\2\2"+
+		"\30\177\3\2\2\2\32\u0082\3\2\2\2\34\u0085\3\2\2\2\36\u0098\3\2\2\2 \u00c3"+
+		"\3\2\2\2\"%\5\4\3\2#%\5\24\13\2$\"\3\2\2\2$#\3\2\2\2%(\3\2\2\2&$\3\2\2"+
+		"\2&\'\3\2\2\2\'*\3\2\2\2(&\3\2\2\2)+\5\36\20\2*)\3\2\2\2*+\3\2\2\2+\3"+
+		"\3\2\2\2,\63\5\32\16\2-\63\5\6\4\2.\63\5\b\5\2/\63\5\n\6\2\60\63\5\22"+
+		"\n\2\61\63\5\36\20\2\62,\3\2\2\2\62-\3\2\2\2\62.\3\2\2\2\62/\3\2\2\2\62"+
+		"\60\3\2\2\2\62\61\3\2\2\2\63\5\3\2\2\2\64\67\7\16\2\2\65\66\7(\2\2\66"+
+		"8\5\36\20\2\67\65\3\2\2\2\678\3\2\2\28\7\3\2\2\29:\7\3\2\2:<\7$\2\2;="+
+		"\5\36\20\2<;\3\2\2\2<=\3\2\2\2=>\3\2\2\2>F\7%\2\2?@\7\4\2\2@B\7$\2\2A"+
+		"C\5\36\20\2BA\3\2\2\2BC\3\2\2\2CD\3\2\2\2DF\7%\2\2E9\3\2\2\2E?\3\2\2\2"+
+		"F\t\3\2\2\2GK\5\f\7\2HJ\5\16\b\2IH\3\2\2\2JM\3\2\2\2KI\3\2\2\2KL\3\2\2"+
+		"\2LO\3\2\2\2MK\3\2\2\2NP\5\20\t\2ON\3\2\2\2OP\3\2\2\2P\13\3\2\2\2QR\7"+
+		"\5\2\2RS\7$\2\2ST\5\36\20\2TU\7%\2\2UV\7\"\2\2VW\5\2\2\2WX\7#\2\2X\r\3"+
+		"\2\2\2YZ\7\6\2\2Z[\7$\2\2[\\\5\36\20\2\\]\7%\2\2]^\7\"\2\2^_\5\2\2\2_"+
+		"`\7#\2\2`\17\3\2\2\2ab\7\7\2\2bc\7\"\2\2cd\5\2\2\2de\7#\2\2e\21\3\2\2"+
+		"\2fg\7\b\2\2gh\7$\2\2hi\5\36\20\2ij\7%\2\2jk\7\"\2\2kl\5\2\2\2lm\7#\2"+
+		"\2m\23\3\2\2\2no\7\t\2\2op\7\16\2\2pq\7$\2\2qr\5\26\f\2rs\7%\2\2st\7\""+
+		"\2\2tu\5\2\2\2uv\7#\2\2v\25\3\2\2\2w|\5\30\r\2xy\7\36\2\2y{\5\30\r\2z"+
+		"x\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\27\3\2\2\2~|\3\2\2\2\177\u0080"+
+		"\5 \21\2\u0080\u0081\7\16\2\2\u0081\31\3\2\2\2\u0082\u0083\5 \21\2\u0083"+
+		"\u0084\5\6\4\2\u0084\33\3\2\2\2\u0085\u0086\7\16\2\2\u0086\u0087\7$\2"+
+		"\2\u0087\u008c\5\36\20\2\u0088\u0089\7\36\2\2\u0089\u008b\5\36\20\2\u008a"+
+		"\u0088\3\2\2\2\u008b\u008e\3\2\2\2\u008c\u008a\3\2\2\2\u008c\u008d\3\2"+
+		"\2\2\u008d\u008f\3\2\2\2\u008e\u008c\3\2\2\2\u008f\u0090\7%\2\2\u0090"+
+		"\35\3\2\2\2\u0091\u0092\b\20\1\2\u0092\u0093\7\n\2\2\u0093\u0099\5\36"+
+		"\20\7\u0094\u0099\7\r\2\2\u0095\u0099\7\16\2\2\u0096\u0099\7)\2\2\u0097"+
+		"\u0099\5\34\17\2\u0098\u0091\3\2\2\2\u0098\u0094\3\2\2\2\u0098\u0095\3"+
+		"\2\2\2\u0098\u0096\3\2\2\2\u0098\u0097\3\2\2\2\u0099\u00c0\3\2\2\2\u009a"+
+		"\u009b\f\23\2\2\u009b\u009c\7\34\2\2\u009c\u00bf\5\36\20\24\u009d\u009e"+
+		"\f\22\2\2\u009e\u009f\7\33\2\2\u009f\u00bf\5\36\20\23\u00a0\u00a1\f\21"+
+		"\2\2\u00a1\u00a2\7\31\2\2\u00a2\u00bf\5\36\20\22\u00a3\u00a4\f\20\2\2"+
+		"\u00a4\u00a5\7\32\2\2\u00a5\u00bf\5\36\20\21\u00a6\u00a7\f\17\2\2\u00a7"+
+		"\u00a8\7\25\2\2\u00a8\u00bf\5\36\20\20\u00a9\u00aa\f\16\2\2\u00aa\u00ab"+
+		"\7\26\2\2\u00ab\u00bf\5\36\20\17\u00ac\u00ad\f\r\2\2\u00ad\u00ae\7\23"+
+		"\2\2\u00ae\u00bf\5\36\20\16\u00af\u00b0\f\f\2\2\u00b0\u00b1\7\24\2\2\u00b1"+
+		"\u00bf\5\36\20\r\u00b2\u00b3\f\13\2\2\u00b3\u00b4\7\27\2\2\u00b4\u00bf"+
+		"\5\36\20\f\u00b5\u00b6\f\n\2\2\u00b6\u00b7\7\30\2\2\u00b7\u00bf\5\36\20"+
+		"\13\u00b8\u00b9\f\t\2\2\u00b9\u00ba\7\22\2\2\u00ba\u00bf\5\36\20\n\u00bb"+
+		"\u00bc\f\b\2\2\u00bc\u00bd\7\21\2\2\u00bd\u00bf\5\36\20\t\u00be\u009a"+
+		"\3\2\2\2\u00be\u009d\3\2\2\2\u00be\u00a0\3\2\2\2\u00be\u00a3\3\2\2\2\u00be"+
+		"\u00a6\3\2\2\2\u00be\u00a9\3\2\2\2\u00be\u00ac\3\2\2\2\u00be\u00af\3\2"+
+		"\2\2\u00be\u00b2\3\2\2\2\u00be\u00b5\3\2\2\2\u00be\u00b8\3\2\2\2\u00be"+
+		"\u00bb\3\2\2\2\u00bf\u00c2\3\2\2\2\u00c0\u00be\3\2\2\2\u00c0\u00c1\3\2"+
+		"\2\2\u00c1\37\3\2\2\2\u00c2\u00c0\3\2\2\2\u00c3\u00c4\t\2\2\2\u00c4!\3"+
+		"\2\2\2\21$&*\62\67<BEKO|\u008c\u0098\u00be\u00c0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
