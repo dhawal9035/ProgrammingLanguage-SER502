@@ -9,10 +9,6 @@ import java.util.Iterator;
 public class MyCompiler extends DJPBaseVisitor {
     int ifCounter = 1, elseCounter = 1;
     StringBuilder sb = new StringBuilder();
-
-    //File file = new File("Intermediate.txt");
-
-
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
         //System.out.println("In Body");
@@ -41,10 +37,17 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitAssignment(DJPParser.AssignmentContext ctx) {
         //System.out.println("In assignmnet");
-        if(ctx.e != null)
+        if(ctx.e != null) {
             visit(ctx.e);
-        sb.append("\nSTORE ").append(ctx.getChild(0).getText());
-        //System.out.println("STORE " +ctx.getChild(0).getText());
+        } else if(ctx.var.getText().equals("END")){
+            sb.append("\nProgram Body ends");
+            endProgram(sb);
+        } else if(ctx.var.getText().equals("BEGIN")) {
+            sb.append("Program Body begins");
+        }
+        if(!ctx.var.getText().equals("BEGIN")) {
+            sb.append("\nSTORE ").append(ctx.getChild(0).getText());
+        }
         return null;
         }
 
@@ -253,24 +256,17 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx) {
         sb.append("\nFunction Name: ").append(ctx.getChild(1).getText());
         sb.append("\nParameters Start");
-        //System.out.println("Function Name: "+ctx.getChild(1).getText());
-        //System.out.println("Parameters Start");
-        //System.out.println(ctx.para.size());
         visit(ctx.para);
         sb.append("\nParameters End");
         sb.append("\nFunction Body Starts");
-        //System.out.println("Parameters End");
-        //System.out.println("Function Body Starts");
         visit(ctx.funcBody);
         sb.append("\nFunction Body Ends");
-        //System.out.println("Function Body Ends");
         return null;
     }
 
     @Override
     public Object visitParameterList(DJPParser.ParameterListContext ctx) {
         sb.append("\nNo of parameters:").append(ctx.paraDec.size());
-        //System.out.println("No of parameters:"+ctx.paraDec.size());
         visitChildren(ctx);
         return null;
     }
@@ -279,8 +275,17 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitParameterDeclaration(DJPParser.ParameterDeclarationContext ctx) {
         visitChildren(ctx);
         sb.append("\nSTORE ").append(ctx.getChild(1).getText());
-        //System.out.println("STORE "+ctx.getChild(1).getText());
         return null;
+    }
+
+    public void endProgram(StringBuilder sb){
+        try{
+            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediate.txt")));
+            bwr.write(sb.toString());
+            bwr.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

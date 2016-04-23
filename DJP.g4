@@ -4,7 +4,7 @@
  
 grammar DJP;
 
-body: (statement | functionDeclaration)* expression? ;
+body: (statement | functionDeclaration)* expression?;
 
 statement
 :

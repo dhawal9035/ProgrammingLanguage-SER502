@@ -1,9 +1,8 @@
-Num x
-i = x
-Num fact = 1
-while(i > 1) {
-    fact = fact * i
-    i = i-1
+BEGIN
+func newFunc(Num i, Num x) {
+a=1+2
+b=2+3
 }
 
-print(fact)
+newFunc(1,2)
+END
