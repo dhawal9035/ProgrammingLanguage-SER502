@@ -28,7 +28,7 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitVariableDeclaration(DJPParser.VariableDeclarationContext ctx) {
         //System.out.println("IN Variable Dec");
         visit(ctx.assign);
-        sb.append("STORE ").append(ctx.Type.getText());
+        sb.append(" Data Type ").append(ctx.Type.getText());
         //System.out.println("STORE "+ctx.Type.getText());
         return null;
     }
@@ -40,7 +40,7 @@ public class MyCompiler extends DJPBaseVisitor {
         if(ctx.e != null) {
             visit(ctx.e);
         } else if(ctx.var.getText().equals("END")){
-            sb.append("\nProgram Body ends");
+            sb.append("\nENDS");
             endProgram(sb);
         } else if(ctx.var.getText().equals("BEGIN")) {
             sb.append("Program Body begins");
@@ -186,7 +186,7 @@ public class MyCompiler extends DJPBaseVisitor {
             sb.append("\nPrint -> Same Line");
             //System.out.println("Print -> Same Line");
         }
-        sb.append("\nPRINTLN");
+        //sb.append("\nPRINTLN");
         return null;
     }
 
@@ -205,7 +205,7 @@ public class MyCompiler extends DJPBaseVisitor {
         //System.out.println("if true "+ ifCounter++);
         visit(ctx.iftrue);
         sb.append("\nSkip Else");
-        sb.append("\nGo to - end if");
+        sb.append("\nGo to - end if ").append(ifCounter--);
         //System.out.println("Skip Else");
         //System.out.println("GO TO- End If");
         return null;
