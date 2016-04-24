@@ -1,3 +1,7 @@
+package RunTime;
+
+import Exceptions.VariableNotDeclaredException;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;

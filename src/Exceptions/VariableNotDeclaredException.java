@@ -1,3 +1,5 @@
+package Exceptions;
+
 /**
  * Created by Dhawal Soni on 4/23/2016.
  */
