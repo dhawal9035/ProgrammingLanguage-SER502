@@ -22,6 +22,8 @@ public class RunTime {
     }
 
     public static void startExecution(Scanner sc) throws Exception{
+        int a;
+        int b;
         while(sc.hasNext()){
             String s = sc.nextLine();
             String[] opCode = s.split(" ");
@@ -48,24 +50,38 @@ public class RunTime {
                     }
                     break;
                 case "DIV":
-                    int a = varStack.pop();
-                    int b = varStack.pop();
+                    a = varStack.pop();
+                    b = varStack.pop();
                     varStack.push(b/a);
                     break;
                 case "MUL":
-                    int c = varStack.pop();
-                    int d = varStack.pop();
-                    varStack.push(c*d);
+                    a = varStack.pop();
+                    b = varStack.pop();
+                    varStack.push(b*a);
                     break;
                 case "ADD":
-                    int e = varStack.pop();
-                    int f = varStack.pop();
-                    varStack.push(e+f);
+                    a = varStack.pop();
+                    b = varStack.pop();
+                    varStack.push(b+a);
                     break;
                 case "SUB":
-                    int g = varStack.pop();
-                    int h = varStack.pop();
-                    varStack.push(h-g);
+                    a = varStack.pop();
+                    b = varStack.pop();
+                    varStack.push(b-a);
+                    break;
+                case "IF":
+                    break;
+                case "LT":
+                    break;
+                case "GT":
+                    break;
+                case "GTE":
+                    break;
+                case "LTE":
+                    break;
+                case "EQ":
+                    break;
+                case "NE":
                     break;
                 case "Print":
                     System.out.print(varStack.pop());

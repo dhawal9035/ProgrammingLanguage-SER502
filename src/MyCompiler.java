@@ -192,7 +192,7 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitIfStatement(DJPParser.IfStatementContext ctx) {
-        sb.append("\nIF");
+        //sb.append("\nIF");
         //System.out.println("IF");
         visitChildren(ctx);
         return null;
@@ -202,10 +202,11 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitIfStat(DJPParser.IfStatContext ctx) {
         visit(ctx.ie);
         sb.append("\nif true ").append(ifCounter++);
+        elseCounter++;
         //System.out.println("if true "+ ifCounter++);
         visit(ctx.iftrue);
-        sb.append("\nSkip Else");
-        sb.append("\nGo to - end if ").append(ifCounter--);
+        //sb.append("\nGO TO SkipElse");
+        sb.append("\nGO TO EndIF").append(--ifCounter);
         //System.out.println("Skip Else");
         //System.out.println("GO TO- End If");
         return null;
@@ -220,25 +221,19 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitElseStat(DJPParser.ElseStatContext ctx) {
-        sb.append("\nelse ").append( elseCounter++);
-        //System.out.println("else "+ elseCounter++);
+        sb.append("\nelse ").append( --elseCounter);
         visit(ctx.elsetrue);
-        sb.append("\nElse Ends");
-        sb.append("\nEnd if");
-        //System.out.println("Else Ends");
-        //System.out.println("End if");
+        sb.append("\nElse Ends").append(elseCounter);
+        sb.append("\nEndIF").append(ifCounter);
         return null;
     }
 
     @Override
     public Object visitWhileStat(DJPParser.WhileStatContext ctx) {
-        //System.out.println("While");
         sb.append("\nWhile");
         visit(ctx.whileEx);
-        //System.out.println("if True execute body");
         sb.append("\nif True execute body");
         visit(ctx.whileBody);
-        //System.out.println("GO To While");
         sb.append("\nGO To While");
         return null;
     }
@@ -247,8 +242,6 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitFunctionCall(DJPParser.FunctionCallContext ctx) {
         visitChildren(ctx);
         sb.append("\nGO TO ").append(ctx.getChild(0).getText());
-        //System.out.println("GO TO "+ctx.getChild(0).getText());
-
         return null;
     }
 

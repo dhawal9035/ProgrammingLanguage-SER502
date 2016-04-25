@@ -1,23 +1,40 @@
 Program Body begins
-Function Name: newFunc
-Parameters Start
-No of parameters:2
-Data type:Num
-STORE i
-Data type:Num
-STORE x
-Parameters End
-Function Body Starts
 PUSH 1
+STORE x Data Type Num
 PUSH 2
-ADD
-STORE a
-PUSH 2
+STORE y Data Type Num
+LOAD x
+LOAD y
+LT
+if true 1
+LOAD x
 PUSH 3
 ADD
-STORE b
-Function Body Ends
+STORE x
+LOAD y
 PUSH 1
+ADD
+STORE y
+LOAD x
+LOAD y
+GT
+if true 2
+PUSH 1
+STORE y
+GO TO EndIF2
+else 2
 PUSH 2
-GO TO newFunc
-Program Body ends
+STORE y
+Else Ends2
+EndIF2
+GO TO EndIF1
+else 1
+LOAD x
+STORE y
+Else Ends1
+EndIF1
+LOAD x
+PrintLN -> New Line
+LOAD y
+PrintLN -> New Line
+ENDS

@@ -1,8 +1,17 @@
 BEGIN
-func newFunc(Num i, Num x) {
-a=1+2
-b=2+3
+Num x = 1
+Num y = 2
+if(x < y) {
+    x = x + 3
+    y = y + 1
+    if( x > y){
+        y = 1
+    } else {
+        y = 2
+    }
+} else {
+    y = x
 }
-
-newFunc(1,2)
+println(x)
+println(y)
 END
