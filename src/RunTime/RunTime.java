@@ -119,10 +119,7 @@ public class RunTime {
                     int y=varStack.pop();
                     varStack.push(x=y);
                     break;
-                case "if":
-                    int op1=varStack.pop();
-                    int op2=varStack.pop();
-
+                
 
 
                 default:
