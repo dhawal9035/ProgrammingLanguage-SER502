@@ -25,6 +25,7 @@ public class RunTime {
     public static void startExecution(Scanner sc) throws Exception {
         int a;
         int b;
+        int counter;
         while (sc.hasNext()) {
             String s = sc.nextLine();
             String[] opCode = s.split(" ");
@@ -124,22 +125,26 @@ public class RunTime {
                 case "if":
                     a = varStack.pop();
                     boolean conditional = a > 0;
-                    int num = sc.nextInt();
+                    counter = sc.nextInt();
                     if (conditional) {
 //                        if command is true, continue until 'ENDIF#'
-                        while (!sc.nextLine().equals("GO TO EndIF" + num)) {
+                        while (!sc.nextLine().equals("GO TO EndIF" + counter)) {
 //                            process lines
 
                         }
 //                            skip the lines until it reaches the outer if ending
-                        while (!sc.nextLine().equals("ENDIF" + num)) {
+                        while (!sc.nextLine().equals("ENDIF" + counter)) {
 //                            just skips the lines
                         }
                     } else {
 //                        else, continue until 'GO TO EndIF#'
+                        while (!sc.nextLine().equals("GO TO EndIF" + counter) {
+//                            just skips the lines
+                        }
                     }
-                    num = sc.nextInt();
-                    while (!sc.nextLine().equals("Else Ends" + num)) {
+                case "else":
+                    counter = sc.nextInt();
+                    while (!sc.nextLine().equals("Else Ends" + counter)) {
 //                            process the lines
                     }
                 case "ENDS":
