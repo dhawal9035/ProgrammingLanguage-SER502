@@ -14,6 +14,7 @@ import java.util.Stack;
 public class RunTime {
     public static HashMap<String, LinkedList<Integer>> symbolTable = new HashMap<>();
     public static Stack<Integer> varStack = new Stack<>();
+    public static int counter = 0;
 
     public static void main(String args[]) throws Exception {
         Scanner sc = new Scanner(new File(args[0]));
@@ -25,10 +26,24 @@ public class RunTime {
     public static void startExecution(Scanner sc) throws Exception {
         int a;
         int b;
-        int counter;
+        boolean conditional;
         while (sc.hasNext()) {
             String s = sc.nextLine();
             String[] opCode = s.split(" ");
+//            checks if it is at the end or meant to go to the end
+//            while instead of if for nested if loops
+            if(s.equals("EndWHILE")){
+//                TODO: record whileloop # and set sc equal to the start of the while loop
+            }
+            while(s.equals("GO TO EndIF" + counter) || s.equals("EndIF" + counter)) {
+                //     skip the lines until it reaches the outer if ending
+                while (!s.equals("EndIF" + counter)) {
+                           s = sc.nextLine();
+                }
+//                go to line after ENDIF
+                s = sc.nextLine();
+                counter -= 1;
+            }
             switch (opCode[0]) {
                 case "PUSH":
                     varStack.push(Integer.parseInt(opCode[1]));
@@ -124,28 +139,36 @@ public class RunTime {
                     break;
                 case "if":
                     a = varStack.pop();
-                    boolean conditional = a > 0;
+                    conditional = a > 0;
                     counter = sc.nextInt();
                     if (conditional) {
 //                        if command is true, continue until 'ENDIF#'
-                        while (!sc.nextLine().equals("GO TO EndIF" + counter)) {
-//                            process lines
-
-                        }
-//                            skip the lines until it reaches the outer if ending
-                        while (!sc.nextLine().equals("ENDIF" + counter)) {
-//                            just skips the lines
-                        }
-                    } else {
+                    }
+                    else {
 //                        else, continue until 'GO TO EndIF#'
-                        while (!sc.nextLine().equals("GO TO EndIF" + counter) {
+                        while (!s.equals("GO TO EndIF" + counter)){
 //                            just skips the lines
+                            s = sc.nextLine();
                         }
                     }
                 case "else":
                     counter = sc.nextInt();
-                    while (!sc.nextLine().equals("Else Ends" + counter)) {
-//                            process the lines
+//                    continue to process lines
+                case "while":
+                    a = varStack.pop();
+                    conditional = a > 0;
+                    counter = sc.nextInt();
+                    if(conditional){
+//                        continue to process
+//                      TODO: record line nummber
+
+                    }
+                    else{
+//                        skip lines
+                        while (!s.equals("GO TO EndWHILE" + counter)){
+//                            just skips the lines, next iteration will go past the endwhile and break the loop
+                            s = sc.nextLine();
+                        }
                     }
                 case "ENDS":
                     System.exit(0);
