@@ -183,6 +183,18 @@ public class DJPBaseListener implements DJPListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStack(DJPParser.StackContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStack(DJPParser.StackContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAdd(DJPParser.AddContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -370,6 +382,18 @@ public class DJPBaseListener implements DJPListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReturn(DJPParser.ReturnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStackDec(DJPParser.StackDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStackDec(DJPParser.StackDecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
