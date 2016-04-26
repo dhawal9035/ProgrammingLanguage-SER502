@@ -69,20 +69,7 @@ public class RunTime {
                     b = varStack.pop();
                     varStack.push(b-a);
                     break;
-                case "IF":
-                    break;
-                case "LT":
-                    break;
-                case "GT":
-                    break;
-                case "GTE":
-                    break;
-                case "LTE":
-                    break;
-                case "EQ":
-                    break;
-                case "NE":
-                    break;
+
                 case "Print":
                     System.out.print(varStack.pop());
                     break;
@@ -91,6 +78,53 @@ public class RunTime {
                     break;
                 case "ENDS":
                     System.exit(0);
+                case "EQUAL":
+                    int i=varStack.pop();
+                    int j=varStack.pop();
+                    varStack.push(i==j);
+                    break;
+                case "GT":
+                    int k=varStack.pop();
+                    int l=varStack.pop();
+                    varStack.push(k>l);
+                    break;
+                case "LT":
+                    int m=varStack.pop();
+                    int n=varStack.pop();
+                    varStack.push(m<n);
+                    break;
+                case "LTE":
+                    int o=varStack.pop();
+                    int p=varStack.pop();
+                    varStack.push(o<=p);
+                    break;
+                case "GTE":
+                    int q=varStack.pop();
+                    int r=varStack.pop();
+                    varStack.push(q>=r);
+                    break;
+                case "NOTEQUALS":
+                    int s=varStack.pop();
+                    int t=varStack.pop();
+                    varStack.push(s!=t);
+                    break;
+                case "MOD":
+                    int u=varStack.pop();
+                    int v=varStack.pop();
+                    if(u==0.0){
+                        varStack.push(0);
+                    }
+                    else{
+                        varStack.push(u%v);
+                    }
+
+                    break;
+                case "ASSIGNMENT":
+                    int x=varStack.pop();
+                    int y=varStack.pop();
+                    varStack.push(x=y);
+                    break;
+
                 default:
                     throw new IllegalArgumentException(opCode[0]+" Arguement is not defined");
             }
