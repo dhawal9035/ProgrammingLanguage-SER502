@@ -176,6 +176,19 @@ public class MyCompiler extends DJPBaseVisitor {
     }
 
     @Override
+    public Object visitStackDec(DJPParser.StackDecContext ctx) {
+        //sb.append("\nStack ").append(ctx.getChild(0).getText());
+        visitChildren(ctx);
+        return null;
+    }
+
+    @Override
+    public Object visitStack(DJPParser.StackContext ctx) {
+        sb.append("\nStack ").append(ctx.stckid.getText());
+        return null;
+    }
+
+    @Override
     public Object visitInbuiltFuncCall(DJPParser.InbuiltFuncCallContext ctx) {
         if(ctx.getChild(0).getText().equalsIgnoreCase("println")){
             visit(ctx.prExpLn);

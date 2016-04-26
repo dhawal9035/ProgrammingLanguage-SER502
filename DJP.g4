@@ -54,6 +54,8 @@ variableDeclaration: Type=type assign=assignment ;
 
 functionCall: Identifier '(' expression (',' expression)* ')' ;
 
+stack: stk='Stack' stckid=Identifier;
+
 expression :
 	left=expression DIV right=expression            #div
 	| left=expression MUL right=expression          #mul
@@ -72,6 +74,7 @@ expression :
 	| Identifier                                    #ident
 	| Digit                                         #digit
 	| functionCall                                  #funCall
+	| stack                                         #stackDec
 ;
 
 type: 'Boolean' | 'Num' ;
