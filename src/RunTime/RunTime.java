@@ -8,9 +8,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
-/**
- * Created by Dhawal Soni on 4/23/2016.
- */
+
 public class RunTime {
     public static Stack<Integer> varStack = new Stack<>();
     public static HashMap<String,LinkedList<Integer>> symbolTable = new HashMap<>();
@@ -79,50 +77,50 @@ public class RunTime {
                 case "ENDS":
                     System.exit(0);
                 case "EQUAL":
-                    int i=varStack.pop();
-                    int j=varStack.pop();
-                    varStack.push(i==j);
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    varStack.push(a==b);
                     break;
                 case "GT":
-                    int k=varStack.pop();
-                    int l=varStack.pop();
-                    varStack.push(k>l);
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    varStack.push(a>b);
                     break;
                 case "LT":
-                    int m=varStack.pop();
-                    int n=varStack.pop();
-                    varStack.push(m<n);
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    varStack.push(a<b);
                     break;
                 case "LTE":
-                    int o=varStack.pop();
-                    int p=varStack.pop();
-                    varStack.push(o<=p);
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    varStack.push(a<=b);
                     break;
                 case "GTE":
-                    int q=varStack.pop();
-                    int r=varStack.pop();
-                    varStack.push(q>=r);
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    varStack.push(a>=b);
                     break;
                 case "NOTEQUALS":
-                    int s=varStack.pop();
-                    int t=varStack.pop();
-                    varStack.push(s!=t);
+                    int a=varStack.pop();
+                    int b=varStack.pop();
+                    varStack.push(a!=b);
                     break;
                 case "MOD":
-                    int u=varStack.pop();
-                    int v=varStack.pop();
-                    if(u==0.0){
+                    a=varStack.pop();
+                    b=varStack.pop();
+                    if(a==0.0){
                         varStack.push(0);
                     }
                     else{
-                        varStack.push(u%v);
+                        varStack.push(a%b);
                     }
 
                     break;
                 case "ASSIGNMENT":
-                    int x=varStack.pop();
-                    int y=varStack.pop();
-                    varStack.push(x=y);
+                    int a=varStack.pop();
+                    int b=varStack.pop();
+                    varStack.push(a=b);
                     break;
 
                 default:
