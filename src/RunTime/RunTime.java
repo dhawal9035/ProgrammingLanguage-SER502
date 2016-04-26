@@ -119,9 +119,7 @@ public class RunTime {
                     int y=varStack.pop();
                     varStack.push(x=y);
                     break;
-                
-
-
+               
                 default:
                     throw new IllegalArgumentException(opCode[0]+" Arguement is not defined");
             }
