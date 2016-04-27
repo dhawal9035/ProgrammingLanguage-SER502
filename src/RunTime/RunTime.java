@@ -177,8 +177,6 @@ public class RunTime {
                     break;
                 case "ENDS":
                     System.exit(0);
-                case "Else":
-                    break;
                 case "GO":
                     break;
                 default:
