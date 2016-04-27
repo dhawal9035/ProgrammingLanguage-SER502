@@ -29,7 +29,7 @@ public class RunTime {
         boolean conditional;
         while (sc.hasNext()) {
             String s = sc.nextLine();
-            String[] opCode = s.split(" ");
+
 //            checks if it is at the end or meant to go to the end
 //            while instead of if for nested if loops
             if(s.equals("EndWHILE")){
@@ -44,6 +44,8 @@ public class RunTime {
                 s = sc.nextLine();
                 counter -= 1;
             }
+            System.out.println("test: " + s);
+            String[] opCode = s.split(" ");
             switch (opCode[0]) {
                 case "PUSH":
                     varStack.push(Integer.parseInt(opCode[1]));
@@ -140,7 +142,8 @@ public class RunTime {
                 case "if":
                     a = varStack.pop();
                     conditional = a > 0;
-                    counter = sc.nextInt();
+
+                    counter ++;
                     if (conditional) {
 //                        if command is true, continue until 'ENDIF#'
                     }
@@ -151,13 +154,15 @@ public class RunTime {
                             s = sc.nextLine();
                         }
                     }
+                    break;
                 case "else":
-                    counter = sc.nextInt();
+                    counter ++;
 //                    continue to process lines
+                    break;
                 case "while":
                     a = varStack.pop();
                     conditional = a > 0;
-                    counter = sc.nextInt();
+                    counter ++;
                     if(conditional){
 //                        continue to process
 //                      TODO: record line nummber
@@ -170,6 +175,7 @@ public class RunTime {
                             s = sc.nextLine();
                         }
                     }
+                    break;
                 case "ENDS":
                     System.exit(0);
                 default:
