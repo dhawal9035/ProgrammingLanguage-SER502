@@ -156,7 +156,6 @@ public class RunTime {
                     }
                     break;
                 case "else":
-                    counter ++;
 //                    continue to process lines
                     break;
                 case "while":
