@@ -44,7 +44,7 @@ public class RunTime {
                 s = sc.nextLine();
                 counter -= 1;
             }
-            System.out.println("test: " + s);
+            //System.out.println("test: " + s);
             String[] opCode = s.split(" ");
             switch (opCode[0]) {
                 case "PUSH":
@@ -178,8 +178,15 @@ public class RunTime {
                     break;
                 case "ENDS":
                     System.exit(0);
+                case "Else":
+                    break;
+                case "GO":
+                    break;
                 default:
-                    throw new IllegalArgumentException(opCode[0] + " Arguement is not defined");
+                    if(opCode[0].substring(0,4).contains("EndIF")){
+                        throw new IllegalArgumentException(opCode[0] + " Arguement is not defined");
+                    }
+
             }
         }
     }

@@ -1,17 +1,15 @@
 BEGIN
-Num x = 1
-Num y = 2
-if(x < y) {
-    x = x + 3
-    y = y + 1
-    if( x > y){
-        y = 1
+Num i = 5
+Num x = 6
+if(x > i){
+    println(x)
+    if( 4 > 5 ) {
+        println(100)
     } else {
-        y = 2
+        println(12)
     }
 } else {
-    y = x
+    println(i)
 }
-println(x)
-println(y)
+println(x+i)
 END

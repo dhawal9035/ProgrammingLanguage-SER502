@@ -207,7 +207,11 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitIfStatement(DJPParser.IfStatementContext ctx) {
         //sb.append("\nIF");
         //System.out.println("IF");
-        visitChildren(ctx);
+        visit(ctx.ifs);
+        if(ctx.getChildCount() > 1){
+            visit(ctx.el);
+        }
+
         return null;
     }
 
@@ -216,12 +220,11 @@ public class MyCompiler extends DJPBaseVisitor {
         visit(ctx.ie);
         sb.append("\nif true ").append(ifCounter++);
         elseCounter++;
-        //System.out.println("if true "+ ifCounter++);
         visit(ctx.iftrue);
-        //sb.append("\nGO TO SkipElse");
         sb.append("\nGO TO EndIF").append(--ifCounter);
-        //System.out.println("Skip Else");
-        //System.out.println("GO TO- End If");
+        if(ctx.parent.getChildCount() < 2){
+            sb.append("\nEndIF").append(ifCounter);
+        }
         return null;
     }
 

@@ -449,6 +449,8 @@ public class DJPParser extends Parser {
 	}
 
 	public static class IfStatementContext extends ParserRuleContext {
+		public IfStatContext ifs;
+		public ElseStatContext el;
 		public IfStatContext ifStat() {
 			return getRuleContext(IfStatContext.class,0);
 		}
@@ -488,7 +490,7 @@ public class DJPParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(71);
-			ifStat();
+			((IfStatementContext)_localctx).ifs = ifStat();
 			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -508,7 +510,7 @@ public class DJPParser extends Parser {
 			if (_la==T__4) {
 				{
 				setState(78);
-				elseStat();
+				((IfStatementContext)_localctx).el = elseStat();
 				}
 			}
 

@@ -1,40 +1,34 @@
 Program Body begins
-PUSH 1
+PUSH 5
+STORE i Data Type Num
+PUSH 6
 STORE x Data Type Num
-PUSH 2
-STORE y Data Type Num
 LOAD x
-LOAD y
-LT
+LOAD i
+GT
 if true 1
 LOAD x
-PUSH 3
-ADD
-STORE x
-LOAD y
-PUSH 1
-ADD
-STORE y
-LOAD x
-LOAD y
+PrintLN -> New Line
+PUSH 4
+PUSH 5
 GT
 if true 2
-PUSH 1
-STORE y
+PUSH 100
+PrintLN -> New Line
 GO TO EndIF2
 else 2
-PUSH 2
-STORE y
+PUSH 12
+PrintLN -> New Line
 Else Ends2
 EndIF2
 GO TO EndIF1
 else 1
-LOAD x
-STORE y
+LOAD i
+PrintLN -> New Line
 Else Ends1
 EndIF1
 LOAD x
-PrintLN -> New Line
-LOAD y
+LOAD i
+ADD
 PrintLN -> New Line
 ENDS

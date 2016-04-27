@@ -25,7 +25,7 @@ inbuiltFuncCall
 ;
 
 ifStatement
-: ifStat elseIfStat* elseStat?
+: ifs=ifStat elseIfStat* el=elseStat?
 ;
 
 ifStat
