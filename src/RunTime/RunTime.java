@@ -17,7 +17,8 @@ public class RunTime {
     public static int counter = 0;
 
     public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(new File(args[0]));
+//        Scanner sc = new Scanner(new File(args[0]));
+        Scanner sc = new Scanner(new File("Intermediate.txt"));
         if (sc.nextLine().equalsIgnoreCase("Program Body begins")) {
             startExecution(sc);
         }
@@ -37,6 +38,7 @@ public class RunTime {
             }
             while(s.equals("GO TO EndIF" + counter) || s.equals("EndIF" + counter)) {
                 //     skip the lines until it reaches the outer if ending
+                System.out.println("Reached Endif" + counter);
                 while (!s.equals("EndIF" + counter)) {
                            s = sc.nextLine();
                 }
@@ -44,6 +46,7 @@ public class RunTime {
                 s = sc.nextLine();
                 counter -= 1;
             }
+            System.out.println("Current line: " + s + "Counter: " + counter);
             //System.out.println("test: " + s);
             String[] opCode = s.split(" ");
             switch (opCode[0]) {
@@ -156,7 +159,6 @@ public class RunTime {
                     }
                     break;
                 case "else":
-                    counter ++;
 //                    continue to process lines
                     break;
                 case "while":
