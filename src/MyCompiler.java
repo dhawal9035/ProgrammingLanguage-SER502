@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Created by Dhawal Soni on 4/19/2016.
  */
 public class MyCompiler extends DJPBaseVisitor {
-    int ifCounter = 1, elseCounter = 1;
+    int ifCounter = 1, elseCounter = 1, whileCounter=1;
     StringBuilder sb = new StringBuilder();
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
@@ -246,11 +246,11 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitWhileStat(DJPParser.WhileStatContext ctx) {
-        sb.append("\nWhile");
+        sb.append("\nWhile").append(whileCounter++);
         visit(ctx.whileEx);
         sb.append("\nif True execute body");
         visit(ctx.whileBody);
-        sb.append("\nGO To While");
+        sb.append("\nGO To While").append(--whileCounter);
         return null;
     }
 
