@@ -1,15 +1,8 @@
 BEGIN
-Num i = 5
-Num x = 6
-if(x > i){
-    println(x)
-    if( 4 > 5 ) {
-        println(100)
-    } else {
-        println(12)
-    }
-} else {
+Num i = 0
+while(i < 5){
     println(i)
+    i = i+1
 }
-println(x+i)
+println(i)
 END
