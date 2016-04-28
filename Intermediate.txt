@@ -1,17 +1,50 @@
 Program Body begins
 PUSH 0
 STORE i Data Type Num
+PUSH 0
+STORE k Data Type Num
+While Start 1
 LOAD i
 PUSH 5
 LT
-While1
-LOAD i
+While 1
+PUSH 0
+STORE j Data Type Num
+While Start 2
+LOAD j
+PUSH 6
+LT
+While 2
+PUSH 0
+STORE m Data Type Num
+While Start 3
+LOAD m
+PUSH 5
+LT
+While 3
+LOAD k
+PUSH 1
+ADD
+STORE k
+LOAD k
 PrintLN -> New Line
+LOAD m
+PUSH 1
+ADD
+STORE m
+GO To WhileStart3
+LOAD j
+PUSH 1
+ADD
+STORE j
+GO To WhileStart2
 LOAD i
 PUSH 1
 ADD
 STORE i
-GO To While1
 LOAD i
+PrintLN -> New Line
+GO To WhileStart1
+LOAD k
 PrintLN -> New Line
 ENDS
