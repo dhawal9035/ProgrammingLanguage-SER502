@@ -5,14 +5,6 @@ PUSH 0
 STORE x Data Type Num
 While Start 1
 LOAD i
-PUSH 3
-STORE x Data Type Num
-PUSH 5
-STORE n Data Type Num
-PUSH 1
-STORE prod Data Type Num
-While Start 1
-LOAD n
 PUSH 0
 GT
 While 1
@@ -32,18 +24,6 @@ PUSH 1
 ADD
 STORE x
 LOAD x
-GT
-While 1
-LOAD prod
-LOAD x
-MUL
-STORE prod
-LOAD n
-PUSH 1
-SUB
-STORE n
-GO To WhileStart1
-LOAD prod
 PrintLN -> New Line
 GO To WhileStart2
 GO To WhileStart1

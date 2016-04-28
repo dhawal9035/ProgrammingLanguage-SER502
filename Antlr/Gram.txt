@@ -1,10 +1,13 @@
 BEGIN
-Num x=3
-Num n=5
-Num prod = 1
-while(n > 0){
-    prod = prod * x
-    n = n-1
+Num i = 5
+Num x = 0
+while(i > 0){
+    i = i-1
+    println(i)
+    while(x < 5){
+        x = x+1
+        println(x)
+    }
 }
-println(prod)
+//println(i)
 END
