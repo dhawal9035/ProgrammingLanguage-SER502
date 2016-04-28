@@ -1,8 +1,5 @@
 import org.antlr.v4.gui.TreeViewer;
-import org.antlr.v4.runtime.ANTLRFileStream;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
@@ -18,10 +15,16 @@ public class TreeGenerator {
         DJPLexer lexer = new DJPLexer(ais);
         CommonTokenStream cts = new CommonTokenStream(lexer);
         DJPParser parser = new DJPParser(cts);
-        ParseTree parseTree = parser.body();
-        //Generate Tree
-        showTree("Antlr/Gram.txt");
-        new MyCompiler().visit(parseTree);
+        parser.setErrorHandler(new BailErrorStrategy());
+        try{
+            ParseTree parseTree = parser.body();
+            //Generate Tree
+            showTree("Antlr/Gram.txt");
+            new MyCompiler().visit(parseTree);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public static void showTree(String filename) throws IOException {
         final CharStream stream = new ANTLRFileStream(filename);
