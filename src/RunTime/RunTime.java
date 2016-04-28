@@ -222,6 +222,7 @@ public class RunTime {
                         functionTable.put(opCode[2], list);
 
                     }
+                    break;
                 case "ENDS":
                     System.exit(0);
                 case "GO":
