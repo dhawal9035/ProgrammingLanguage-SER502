@@ -3,10 +3,7 @@ package RunTime;
 import Exceptions.VariableNotDeclaredException;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by Dhawal Soni on 4/23/2016.
@@ -14,11 +11,17 @@ import java.util.Stack;
 public class RunTime {
     public static HashMap<String, LinkedList<Integer>> symbolTable = new HashMap<>();
     public static Stack<Integer> varStack = new Stack<>();
-    public static int counter = 0;
+    public static int[] counterArray = new int[2];
+    public static int lineNum = 0;
+    public static ArrayList<String> lines = new ArrayList<String>();
 
     public static void main(String args[]) throws Exception {
         Scanner sc = new Scanner(new File(args[0]));
-        if (sc.nextLine().equalsIgnoreCase("Program Body begins")) {
+
+        while (sc.hasNext()) {
+            lines.add(sc.nextLine());
+        }
+        if (lines.get(lineNum).equalsIgnoreCase("Program Body begins")) {
             startExecution(sc);
         }
     }
@@ -27,22 +30,34 @@ public class RunTime {
         int a;
         int b;
         boolean conditional;
-        while (sc.hasNext()) {
-            String s = sc.nextLine();
+        while (!lines.get(lineNum+1).isEmpty()) {
+            lineNum++;
+            String s = lines.get(lineNum);
 
+
+
+//          If at the end of the while loop, go back to the start of the current while statement
+            while(s.equals("GO To While" + counterArray[1])){
+                String whileIdent = "WHILE" + counterArray[1];
+                counterArray[1] --;
+                if (symbolTable.containsKey(whileIdent)){
+                    lineNum = symbolTable.get(whileIdent).pop();
+                    s = lines.get(lineNum);
+                }
+//                TODO: test
+            }
 //            checks if it is at the end or meant to go to the end
 //            while instead of if for nested if loops
-            if(s.equals("EndWHILE")){
-//                TODO: record whileloop # and set sc equal to the start of the while loop
-            }
-            while(s.equals("GO TO EndIF" + counter) || s.equals("EndIF" + counter)) {
+            while(s.equals("GO TO EndIF" + counterArray[0]) || s.equals("EndIF" + counterArray[0])) {
                 //     skip the lines until it reaches the outer if ending
-                while (!s.equals("EndIF" + counter)) {
-                           s = sc.nextLine();
+                while (!s.equals("EndIF" + counterArray[0])) {
+                    lineNum++;
+                    s = lines.get(lineNum);
                 }
 //                go to line after ENDIF
-                s = sc.nextLine();
-                counter -= 1;
+                lineNum++;
+                s = lines.get(lineNum);
+                counterArray[0] -= 1;
             }
             //System.out.println("test: " + s);
             String[] opCode = s.split(" ");
@@ -143,15 +158,16 @@ public class RunTime {
                     a = varStack.pop();
                     conditional = a > 0;
 
-                    counter ++;
+                    counterArray[0] ++;
                     if (conditional) {
 //                        if command is true, continue until 'ENDIF#'
                     }
                     else {
 //                        else, continue until 'GO TO EndIF#'
-                        while (!s.equals("GO TO EndIF" + counter)){
+                        while (!s.equals("GO TO EndIF" + counterArray[0])){
 //                            just skips the lines
-                            s = sc.nextLine();
+                            lineNum++;
+                            s = lines.get(lineNum);
                         }
                     }
                     break;
@@ -161,17 +177,22 @@ public class RunTime {
                 case "while":
                     a = varStack.pop();
                     conditional = a > 0;
-                    counter ++;
+                    counterArray[1] ++;
                     if(conditional){
 //                        continue to process
-//                      TODO: record line nummber
+//                      stores while loop line number in the symbolTable
+                        String whileIdent = "While" + counterArray[1];
+                        LinkedList<Integer> list = new LinkedList<>();
+                        list.add(lineNum);
+                        symbolTable.put(whileIdent, list);
 
                     }
                     else{
 //                        skip lines
-                        while (!s.equals("GO TO EndWHILE" + counter)){
-//                            just skips the lines, next iteration will go past the endwhile and break the loop
-                            s = sc.nextLine();
+                        while (!s.equals("EndWHILE" + counterArray[1])){
+//                            just skips the lines untile endwhile, next iteration will go past the endwhile and break the loop
+                            lineNum++;
+                            s = lines.get(lineNum);
                         }
                     }
                     break;
