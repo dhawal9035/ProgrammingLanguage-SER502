@@ -247,10 +247,10 @@ public class MyCompiler extends DJPBaseVisitor {
     @Override
     public Object visitWhileStat(DJPParser.WhileStatContext ctx) {
 //        edited by Justin: Felt like just checking if true at the While line would make runtime easier.
+        int temp = whileCounter;
         sb.append("\nWhile Start ").append(whileCounter++);
         visit(ctx.whileEx);
-
-        sb.append("\nWhile ").append(whileCounter++);
+        sb.append("\nWhile").append(" "+temp);
         visit(ctx.whileBody);
         sb.append("\nGO To WhileStart").append(--whileCounter);
         return null;

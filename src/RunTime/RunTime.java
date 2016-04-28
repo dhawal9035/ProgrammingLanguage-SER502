@@ -17,7 +17,6 @@ public class RunTime {
 
     public static void main(String args[]) throws Exception {
         Scanner sc = new Scanner(new File(args[0]));
-
         while (sc.hasNext()) {
             lines.add(sc.nextLine());
         }
@@ -33,11 +32,12 @@ public class RunTime {
         while (!lines.get(lineNum+1).isEmpty()) {
             lineNum++;
             String s = lines.get(lineNum);
-
+//            System.out.println(s + " counter: " + counterArray[1]);
 
 
 //          If at the end of the while loop, go back to the start of the current while statement
             while(s.equals("GO To WhileStart" + counterArray[1])){
+
                 String whileIdent = "WHILE" + counterArray[1];
                 counterArray[1] --;
                 if (symbolTable.containsKey(whileIdent)){
@@ -45,6 +45,7 @@ public class RunTime {
                     s = lines.get(lineNum);
                 }
 //                TODO: test
+//                System.out.println("looping: " + s);
             }
 //            checks if it is at the end or meant to go to the end
 //            while instead of if for nested if loops

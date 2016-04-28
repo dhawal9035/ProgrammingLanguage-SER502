@@ -1,4 +1,10 @@
 Program Body begins
+PUSH 5
+STORE i Data Type Num
+PUSH 0
+STORE x Data Type Num
+While Start 1
+LOAD i
 PUSH 3
 STORE x Data Type Num
 PUSH 5
@@ -8,6 +14,24 @@ STORE prod Data Type Num
 While Start 1
 LOAD n
 PUSH 0
+GT
+While 1
+LOAD i
+PUSH 1
+SUB
+STORE i
+LOAD i
+PrintLN -> New Line
+While Start 2
+LOAD x
+PUSH 5
+LT
+While 2
+LOAD x
+PUSH 1
+ADD
+STORE x
+LOAD x
 GT
 While 1
 LOAD prod
@@ -21,4 +45,6 @@ STORE n
 GO To WhileStart1
 LOAD prod
 PrintLN -> New Line
+GO To WhileStart2
+GO To WhileStart1
 ENDS
