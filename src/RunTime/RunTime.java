@@ -37,7 +37,7 @@ public class RunTime {
 
 
 //          If at the end of the while loop, go back to the start of the current while statement
-            while(s.equals("GO To While" + counterArray[1])){
+            while(s.equals("GO To WhileStart" + counterArray[1])){
                 String whileIdent = "WHILE" + counterArray[1];
                 counterArray[1] --;
                 if (symbolTable.containsKey(whileIdent)){
@@ -59,7 +59,6 @@ public class RunTime {
                 s = lines.get(lineNum);
                 counterArray[0] -= 1;
             }
-            //System.out.println("test: " + s);
             String[] opCode = s.split(" ");
             switch (opCode[0]) {
                 case "PUSH":
@@ -174,27 +173,34 @@ public class RunTime {
                 case "else":
 //                    continue to process lines
                     break;
-                case "while":
-                    a = varStack.pop();
-                    conditional = a > 0;
-                    counterArray[1] ++;
-                    if(conditional){
-//                        continue to process
-//                      stores while loop line number in the symbolTable
-                        String whileIdent = "While" + counterArray[1];
+                case "While":
+
+
+                    if (opCode[1].equals("Start")) {
+                        counterArray[1] ++;
                         LinkedList<Integer> list = new LinkedList<>();
                         list.add(lineNum);
+                        String whileIdent = "WHILE" + counterArray[1];
                         symbolTable.put(whileIdent, list);
-
                     }
                     else{
+                        a = varStack.pop();
+                        conditional = a > 0;
+                        if(conditional){
+//                        continue to process
+
+                        }
+                        else{
 //                        skip lines
-                        while (!s.equals("EndWHILE" + counterArray[1])){
+                            while (!s.equals("GO To WhileStart" + counterArray[1])){
 //                            just skips the lines untile endwhile, next iteration will go past the endwhile and break the loop
-                            lineNum++;
-                            s = lines.get(lineNum);
+                                lineNum++;
+                                s = lines.get(lineNum);
+                            }
+                            counterArray[1]--;
                         }
                     }
+
                     break;
                 case "ENDS":
                     System.exit(0);
