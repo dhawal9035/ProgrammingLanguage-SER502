@@ -1475,6 +1475,7 @@ public class DJPParser extends Parser {
 		}
 	}
 	public static class ReturnContext extends ExpressionContext {
+		public ExpressionContext right;
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -1556,7 +1557,7 @@ public class DJPParser extends Parser {
 				setState(149);
 				match(T__8);
 				setState(150);
-				expression(6);
+				((ReturnContext)_localctx).right = expression(6);
 				}
 				break;
 			case 2:

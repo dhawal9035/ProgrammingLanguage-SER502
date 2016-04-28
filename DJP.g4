@@ -69,7 +69,7 @@ expression :
 	| left=expression NOTEQUALS right=expression    #ne
 	| left=expression AND right=expression          #and
 	| left=expression OR right=expression           #or
-	| 'return' expression                           #return
+	| 'return' right=expression                     #return
 	| Boolean                                       #bool
 	| Identifier                                    #ident
 	| Digit                                         #digit

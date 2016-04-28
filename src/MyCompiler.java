@@ -289,6 +289,12 @@ public class MyCompiler extends DJPBaseVisitor {
         return null;
     }
 
+    @Override
+    public Object visitReturn(DJPParser.ReturnContext ctx) {
+        sb.append("\nRETURN ").append(ctx.right.getText());
+        return null;
+    }
+
     public void endProgram(StringBuilder sb){
         try{
             BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediate.txt")));
