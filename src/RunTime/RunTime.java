@@ -10,14 +10,16 @@ import java.util.*;
  */
 public class RunTime {
     public static HashMap<String, LinkedList<Integer>> symbolTable = new HashMap<>();
-    public static HashMap<String, LinkedList<ArrayList<String>>> functionTable = new HashMap<>();
+    public static HashMap<String, LinkedList<Integer>> functionTable = new HashMap<>();
     public static Stack<Integer> varStack = new Stack<>();
+    public static Stack<Integer> functStack = new Stack<>();
     public static int[] counterArray = new int[2];
     public static int lineNum = 0;
     public static ArrayList<String> lines = new ArrayList<String>();
 
     public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(new File(args[0]));
+//        Scanner sc = new Scanner(new File(args[0]));
+        Scanner sc = new Scanner(new File("Intermediate.txt"));
         while (sc.hasNext()) {
             lines.add(sc.nextLine());
         }
@@ -33,7 +35,7 @@ public class RunTime {
         while (!lines.get(lineNum+1).isEmpty()) {
             lineNum++;
             String s = lines.get(lineNum);
-//            System.out.println(s + " counter: " + counterArray[1]);
+            System.out.println(s + " counter: " + counterArray[1]);
 
 
 //          If at the end of the while loop, go back to the start of the current while statement
@@ -206,30 +208,39 @@ public class RunTime {
                     break;
                 case "Function":
                     if(opCode[1].equals("Name:")){
-                        ArrayList<String> function = new ArrayList<>();
+//                        ArrayList<String> function = new ArrayList<>();
 //                        Store function line and all lines up to and including 'function body ends'.
-                        function.add(lines.get(lineNum));
+                        LinkedList<Integer> list = new LinkedList<>();
+                        list.add(lineNum);
+//                        list.add(function);
+                        functionTable.put(opCode[2], list);
+//                        function.add(lines.get(lineNum));
                         while (!s.equals("Function Body Ends")){
 //                            just stores the function;
                             lineNum++;
-                            function.add(lines.get(lineNum));
                             s = lines.get(lineNum);
                         }
 //                        put into new hashmap
 //                        todo: Probably store in a cleaner hashmap.
-                        LinkedList<ArrayList<String>> list = new LinkedList<>();
-                        list.add(function);
-                        functionTable.put(opCode[2], list);
+//                        LinkedList<Integer> list = new LinkedList<>();
+//                        list.add(lineNum);
+//                        list.add(function);
 
+                    }
+                    else if(s.equals("Function Body Ends")){
+                        lineNum = functStack.pop();
                     }
                     break;
                 case "ENDS":
                     System.exit(0);
                 case "GO":
 //                    todo: function calls
-                    if (opCode.length > 1 && opCode[1].equals("To")) {
+
+                    if (opCode.length > 1 && opCode[1].equals("TO")) {
 //                        get the function from the hashmap.
-                        ArrayList<String> function = functionTable.get(opCode[2]).pop();
+                        functStack.push(lineNum);
+                        System.out.println("DEBUGGED REACHED FUNCTION: " + opCode[1] + " len: " + opCode.length);
+                        lineNum = functionTable.get(opCode[2]).pop();
 //                        todo: process the function and parameters.
                     }
                     break;
