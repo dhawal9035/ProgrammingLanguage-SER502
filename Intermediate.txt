@@ -1,17 +1,15 @@
 Program Body begins
-PUSH 0
+PUSH 5
 STORE i Data Type Num
 LOAD i
-PUSH 5
-LT
+PUSH 0
+GT
 While1
 LOAD i
 PrintLN -> New Line
 LOAD i
 PUSH 1
-ADD
+SUB
 STORE i
 GO To While1
-LOAD i
-PrintLN -> New Line
 ENDS
