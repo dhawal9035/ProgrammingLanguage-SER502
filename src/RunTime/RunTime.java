@@ -18,8 +18,7 @@ public class RunTime {
     public static ArrayList<String> lines = new ArrayList<String>();
 
     public static void main(String args[]) throws Exception {
-//        Scanner sc = new Scanner(new File(args[0]));
-        Scanner sc = new Scanner(new File("Intermediate.txt"));
+        Scanner sc = new Scanner(new File(args[0]));
         while (sc.hasNext()) {
             lines.add(sc.nextLine());
         }
