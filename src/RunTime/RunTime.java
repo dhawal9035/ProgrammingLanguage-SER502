@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class RunTime {
     public static HashMap<String, LinkedList<Integer>> symbolTable = new HashMap<>();
+    public static HashMap<String, LinkedList<ArrayList<String>>> functionTable = new HashMap<>();
     public static Stack<Integer> varStack = new Stack<>();
     public static int[] counterArray = new int[2];
     public static int lineNum = 0;
@@ -203,9 +204,34 @@ public class RunTime {
                     }
 
                     break;
+                case "Function":
+                    if(opCode[1].equals("Name:")){
+                        ArrayList<String> function = new ArrayList<>();
+//                        Store function line and all lines up to and including 'function body ends'.
+                        function.add(lines.get(lineNum));
+                        while (!s.equals("Function Body Ends")){
+//                            just stores the function;
+                            lineNum++;
+                            function.add(lines.get(lineNum));
+                            s = lines.get(lineNum);
+                        }
+//                        put into new hashmap
+//                        todo: Probably store in a cleaner hashmap.
+                        LinkedList<ArrayList<String>> list = new LinkedList<>();
+                        list.add(function);
+                        functionTable.put(opCode[2], list);
+
+                    }
+                    break;
                 case "ENDS":
                     System.exit(0);
                 case "GO":
+//                    todo: function calls
+                    if (opCode.length > 1 && opCode[1].equals("To")) {
+//                        get the function from the hashmap.
+                        ArrayList<String> function = functionTable.get(opCode[2]).pop();
+//                        todo: process the function and parameters.
+                    }
                     break;
                 default:
                     if(opCode[0].substring(0,4).contains("EndIF")){
