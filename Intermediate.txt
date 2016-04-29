@@ -1,7 +1,7 @@
 Program Body begins
 Function Name: power
 Parameters Start
-No of parameters:2
+No of parameters: 2
 Data type:Num
 STORE x
 Data type:Num
