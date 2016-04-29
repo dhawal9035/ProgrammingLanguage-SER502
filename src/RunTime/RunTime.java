@@ -9,10 +9,33 @@ import java.util.*;
  * Created by Dhawal Soni on 4/23/2016.
  */
 public class RunTime {
-    public static HashMap<String, LinkedList<Integer>> symbolTable = new HashMap<>();
-    public static HashMap<String, LinkedList<Integer>> functionTable = new HashMap<>();
+    public static HashMap<String, LinkedList<Integer>> outerSymbolTable = new HashMap<>();
+    public static HashMap<String, LinkedList<Integer>> symbolTable = outerSymbolTable;
+//    function name, hashmap with function values (funcLineNum, localVariables)
+    public static HashMap<String, HashMap<String, LinkedList<Integer>>> functionTable = new HashMap<>();
+//    todo: close function( get funct name, lineNumber, delte the rest, recreate with just name/lineNumber)
+//    todo: varStack within function? for local variables/params
+//    empty function table after come out.
     public static Stack<Integer> varStack = new Stack<>();
     public static Stack<Integer> functStack = new Stack<>();
+
+//    todo: whenever a function is called, pop the name onto this recursive stack (so symbol table will switch)
+//    todo: in a call, if the name already exists inside recursiveFunctions stack, name it functionName+ " " + num and
+//    todo: store it in the hashmap as such
+    public static Stack<String> recursiveFunctions = new Stack<>();
+//    todo: Stacks to track the variables used in a scope.. If counter
+//    each time if or while is created, pop value onto the stack and increment. append String when pushing to varstack
+    public static Stack<String[]> ifWhileStack = new Stack<>();
+//    todo: Implement block: ends an if or whileStack.
+//    String[] keys = ifWhileStack.pop();
+//    for(int i = 0; i < keys.length; i++){
+//        if(symbolTable.containsKey(keys[i])){
+//            LinkedList<Integer> newList = symbolTable.get(keys[i]);
+//            newList.pop();
+//            symbolTable.put(keys[i], newList);
+//        }
+//    }
+
     public static int[] counterArray = new int[2];
     public static int lineNum = 0;
     public static ArrayList<String> lines = new ArrayList<String>();
@@ -31,6 +54,14 @@ public class RunTime {
         int a;
         int b;
         boolean conditional;
+
+//        todo: utilize properly.
+        symbolTable = outerSymbolTable;
+        outerSymbolTable = symbolTable;
+        symbolTable = functionTable.get("FunctionName");
+        functionTable.get("FunctionName").clear();
+//        end
+
         while (!lines.get(lineNum+1).isEmpty()) {
             lineNum++;
             String s = lines.get(lineNum);
@@ -61,6 +92,12 @@ public class RunTime {
                 lineNum++;
                 s = lines.get(lineNum);
                 counterArray[0] -= 1;
+            }
+            if(s.equals("No of parameters: ")){
+                String[] opCode = s.split(" ");
+                for(int i = 0; i < Integer.parseInt(opCode[4]); i++){
+//                    store params
+                }
             }
             String[] opCode = s.split(" ");
             switch (opCode[0]) {
