@@ -189,6 +189,23 @@ public class MyCompiler extends DJPBaseVisitor {
     }
 
     @Override
+    public Object visitStackOps(DJPParser.StackOpsContext ctx) {
+        String stkOper = ctx.getChild(2).getText().replaceAll("\\(","").replaceAll("\\)","");
+        if(stkOper.equalsIgnoreCase("push")){
+            sb.append("\nSTACKPUSH ").append(ctx.var.getText()).append(" ").append(ctx.dig.getText());
+        } else if (stkOper.equalsIgnoreCase("pop")) {
+            sb.append("\nSTACKPOP ").append(ctx.var.getText());
+        } else if (stkOper.equalsIgnoreCase("top")) {
+            sb.append("\nSTACKTOP ").append(ctx.var.getText());
+        } else if (stkOper.equalsIgnoreCase("isEmpty")) {
+            sb.append("\nSTACKEMPTY ").append(ctx.var.getText());
+        } else {
+            throw new IllegalArgumentException("Trying to call Undefined Operation of Stack");
+        }
+        return null;
+    }
+
+    @Override
     public Object visitInbuiltFuncCall(DJPParser.InbuiltFuncCallContext ctx) {
         if(ctx.getChild(0).getText().equalsIgnoreCase("println")){
             visit(ctx.prExpLn);

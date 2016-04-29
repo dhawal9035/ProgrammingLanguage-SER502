@@ -75,6 +75,14 @@ expression :
 	| Digit                                         #digit
 	| functionCall                                  #funCall
 	| stack                                         #stackDec
+	| stackOps                                      #stackOper
+;
+
+stackOps:
+    var = Identifier '.' 'push(' dig = Digit ')'
+    | var = Identifier '.' 'pop()'
+    | var = Identifier '.' 'isEmpty()'
+    | var = Identifier '.' 'top()'
 ;
 
 type: 'Boolean' | 'Num' ;

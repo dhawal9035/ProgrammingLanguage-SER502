@@ -265,6 +265,18 @@ public interface DJPListener extends ParseTreeListener {
 	 */
 	void exitFunCall(DJPParser.FunCallContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code stackOper}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterStackOper(DJPParser.StackOperContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stackOper}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitStackOper(DJPParser.StackOperContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code gt}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree
@@ -372,6 +384,16 @@ public interface DJPListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDigit(DJPParser.DigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DJPParser#stackOps}.
+	 * @param ctx the parse tree
+	 */
+	void enterStackOps(DJPParser.StackOpsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DJPParser#stackOps}.
+	 * @param ctx the parse tree
+	 */
+	void exitStackOps(DJPParser.StackOpsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DJPParser#type}.
 	 * @param ctx the parse tree
