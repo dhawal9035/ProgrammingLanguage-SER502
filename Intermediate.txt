@@ -1,53 +1,8 @@
 Program Body begins
-Function Name: power
-Parameters Start
-No of parameters:2
-Data type:Num
-STORE x
-Data type:Num
-STORE n
-Parameters End
-Function Body Starts
-PUSH 1
-STORE prod Data Type Num
-While Start 1
-LOAD n
-PUSH 0
-GT
-While 1
-PUSH 0
-STORE sum Data Type Num
-LOAD x
-STORE count Data Type Num
-While Start 2
-LOAD count
-PUSH 0
-GT
-While 2
-LOAD sum
-PUSH 1
-ADD
-STORE sum
-LOAD count
-PUSH 1
-SUB
-STORE count
-GO To WhileStart2
-LOAD prod
-LOAD sum
-MUL
-STORE prod
-LOAD n
-PUSH 1
-SUB
-STORE n
-GO To WhileStart1
-RETURN prod
-Function Body Ends
-PUSH 2
-PUSH 3
-GO TO power
-STORE res Data Type Num
-LOAD res
-PrintLN -> New Line
+Stack s
+STACKPUSH s 1
+STACKPUSH s 2
+STACKPOP s
+STACKTOP s
+STACKEMPTY s
 ENDS
