@@ -1,7 +1,4 @@
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
-
 import java.io.*;
-import java.util.Iterator;
 
 /**
  * Created by Dhawal Soni on 4/19/2016.
@@ -267,7 +264,7 @@ public class MyCompiler extends DJPBaseVisitor {
         int temp = whileCounter;
         sb.append("\nWhile Start ").append(whileCounter++);
         visit(ctx.whileEx);
-        sb.append("\nWhile").append(" "+temp);
+        sb.append("\nWhile").append(" ").append(temp);
         visit(ctx.whileBody);
         sb.append("\nGO To WhileStart").append(--whileCounter);
         return null;
@@ -314,7 +311,7 @@ public class MyCompiler extends DJPBaseVisitor {
 
     public void endProgram(StringBuilder sb){
         try{
-            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediate.txt")));
+            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/StackProg.djpclass")));
             bwr.write(sb.toString());
             bwr.close();
         } catch(Exception e){

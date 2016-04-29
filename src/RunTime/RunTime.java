@@ -231,6 +231,7 @@ public class RunTime {
                     }
                     break;
                 case "Stack":
+
                     break;
                 case "STACKPUSH":
                     break;

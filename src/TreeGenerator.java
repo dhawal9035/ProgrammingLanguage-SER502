@@ -11,7 +11,8 @@ import java.util.List;
  */
 public class TreeGenerator {
     public static void main(String[] args) throws Exception{
-        ANTLRInputStream ais = new ANTLRFileStream("Antlr/Gram.txt");
+        String fileName = "SamplePrograms/StackProg.djp";
+        ANTLRInputStream ais = new ANTLRFileStream(fileName);
         DJPLexer lexer = new DJPLexer(ais);
         CommonTokenStream cts = new CommonTokenStream(lexer);
         DJPParser parser = new DJPParser(cts);
@@ -19,7 +20,7 @@ public class TreeGenerator {
         try{
             ParseTree parseTree = parser.body();
             //Generate Tree
-            showTree("Antlr/Gram.txt");
+            showTree(fileName);
             new MyCompiler().visit(parseTree);
         } catch(Exception e){
             e.printStackTrace();
