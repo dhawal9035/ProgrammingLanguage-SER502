@@ -267,6 +267,16 @@ public class RunTime {
                         lineNum = functStack.pop();
                     }
                     break;
+                case "Stack":
+                    break;
+                case "STACKPUSH":
+                    break;
+                case "STACKPOP":
+                    break;
+                case "STACKTOP":
+                    break;
+                case "STACKEMPTY":
+                    break;
                 case "ENDS":
                     System.exit(0);
                 case "GO":

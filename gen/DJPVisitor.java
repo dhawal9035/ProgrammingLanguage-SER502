@@ -163,6 +163,13 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunCall(DJPParser.FunCallContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code stackOper}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStackOper(DJPParser.StackOperContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code gt}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree
@@ -225,6 +232,12 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDigit(DJPParser.DigitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DJPParser#stackOps}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStackOps(DJPParser.StackOpsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DJPParser#type}.
 	 * @param ctx the parse tree
