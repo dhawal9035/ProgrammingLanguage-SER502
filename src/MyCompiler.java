@@ -330,7 +330,7 @@ public class MyCompiler extends DJPBaseVisitor {
 
     public void endProgram(StringBuilder sb){
         try{
-            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/ArithmeticOperations.djpclass")));
+            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/StackProg.djpclass")));
             bwr.write(sb.toString());
             bwr.close();
         } catch(Exception e){

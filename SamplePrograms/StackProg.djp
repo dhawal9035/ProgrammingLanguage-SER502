@@ -1,10 +1,13 @@
 BEGIN
-Stack st
-s.push(1)
-s.push(2)
-s.push(3)
-s.push(4)
-println(s.pop())
-println(s.top())
-println(s.isEmpty())
+func main(){
+    Stack st
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    println(s.pop())
+    println(s.top())
+    println(s.isEmpty())
+}
+
 END

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TreeGenerator {
     public static void main(String[] args) throws Exception{
-        String fileName = "SamplePrograms/ArithmeticOperations.djp";
+        String fileName = "SamplePrograms/StackProg.djp";
         ANTLRInputStream ais = new ANTLRFileStream(fileName);
         DJPLexer lexer = new DJPLexer(ais);
         CommonTokenStream cts = new CommonTokenStream(lexer);
