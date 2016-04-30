@@ -1,0 +1,10 @@
+BEGIN
+func main(){
+    Num a = 8
+    Num b = 6
+    Num c = 4
+    Num d = 2
+    println(a+b-c/d)
+    println(a*b/c+d)
+}
+END

@@ -1,0 +1,13 @@
+BEGIN
+func main(){
+    Num x = 2
+    Num n = 3
+    Num prod = 1
+        while (n > 0) {
+            prod = prod * x
+            n = n - 1
+        }
+    println(prod)
+}
+
+END

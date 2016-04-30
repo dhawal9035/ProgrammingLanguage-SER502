@@ -1,0 +1,14 @@
+BEGIN
+func main(){
+    Num n = 10
+    Num i = 1
+    Num sum = 0
+    while (i < n+1){
+       sum = sum + i
+       i = i + 1
+       println(i)
+    }
+    println(sum)
+
+}
+END

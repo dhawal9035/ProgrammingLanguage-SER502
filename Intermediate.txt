@@ -50,10 +50,4 @@ GO TO power
 STORE res Data Type Num
 LOAD res
 PrintLN -> New Line
-Stack s
-STACKPUSH s 1
-STACKPUSH s 2
-STACKPOP s
-STACKTOP s
-STACKEMPTY s
 ENDS

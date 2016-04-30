@@ -46,7 +46,9 @@ whileStat
 
 functionDeclaration : 'func' Identifier '(' para=parameterList ')' '{' funcBody=body '}';
 
-parameterList : paraDec+=parameterDeclaration (',' paraDec+=parameterDeclaration)*;
+parameterList : paraDec+=parameterDeclaration (',' paraDec+=parameterDeclaration)*
+     |
+;
 
 parameterDeclaration : Type = type ident = Identifier ;
 
@@ -76,6 +78,7 @@ expression :
 	| functionCall                                  #funCall
 	| stack                                         #stackDec
 	| stackOps                                      #stackOper
+	| functionCall                                  #visitFunc
 ;
 
 stackOps:

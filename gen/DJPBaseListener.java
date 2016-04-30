@@ -279,6 +279,18 @@ public class DJPBaseListener implements DJPListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVisitFunc(DJPParser.VisitFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVisitFunc(DJPParser.VisitFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterEq(DJPParser.EqContext ctx) { }
 	/**
 	 * {@inheritDoc}

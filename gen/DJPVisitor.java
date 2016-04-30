@@ -149,6 +149,13 @@ public interface DJPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLt(DJPParser.LtContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code visitFunc}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitFunc(DJPParser.VisitFuncContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code eq}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree

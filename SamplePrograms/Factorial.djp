@@ -1,0 +1,19 @@
+BEGIN
+func fact(Num n){
+    Num factVal=1
+    if(n == 1){
+        factVal = 1
+    } else {
+        Num res = n-1
+        Num tVal = fact(res)
+        factVal = n * tVal
+    }
+    return factVal
+}
+
+func main(){
+    Num n = 7
+    Num result = fact(n)
+    println(result)
+}
+END

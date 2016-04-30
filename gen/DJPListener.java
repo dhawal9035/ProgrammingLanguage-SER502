@@ -241,6 +241,18 @@ public interface DJPListener extends ParseTreeListener {
 	 */
 	void exitLt(DJPParser.LtContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code visitFunc}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitFunc(DJPParser.VisitFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code visitFunc}
+	 * labeled alternative in {@link DJPParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitFunc(DJPParser.VisitFuncContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code eq}
 	 * labeled alternative in {@link DJPParser#expression}.
 	 * @param ctx the parse tree

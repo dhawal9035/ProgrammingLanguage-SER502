@@ -1,20 +1,8 @@
 BEGIN
-func power(Num x, Num n) {
-    Num prod=1
-    while ( n > 0){
-       Num sum = 0
-       Num count=x
-       while(count > 0){
-          sum = sum + 1
-          count = count - 1
-       }
-       prod = prod * sum
-       n = n - 1
-    }
-    return prod
-}
-
-
-Num res = power(2, 3)
-println(res)
+Stack s
+s.push(1)
+s.push(2)
+s.pop()
+s.top()
+s.isEmpty()
 END

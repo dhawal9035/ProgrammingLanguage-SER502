@@ -1,0 +1,13 @@
+Program Body begins
+Stack st
+STACKPUSH s 1
+STACKPUSH s 2
+STACKPUSH s 3
+STACKPUSH s 4
+STACKPOP s
+PrintLN -> New Line
+STACKTOP s
+PrintLN -> New Line
+STACKEMPTY s
+PrintLN -> New Line
+ENDS

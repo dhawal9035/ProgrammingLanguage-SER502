@@ -1,0 +1,12 @@
+BEGIN
+func show(Num i){
+    i = 40
+    println(i)
+}
+func main(){
+    Num i=10
+    println(i)
+    show(i)
+    println(i)
+}
+END

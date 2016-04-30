@@ -1,0 +1,11 @@
+BEGIN
+func main(){
+    Num i = 4
+    Num j = 5
+    if(i < j) {
+        println(j)
+    } else {
+        println(i)
+    }
+}
+END

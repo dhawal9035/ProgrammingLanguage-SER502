@@ -170,6 +170,13 @@ public class DJPBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements DJ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitVisitFunc(DJPParser.VisitFuncContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitEq(DJPParser.EqContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

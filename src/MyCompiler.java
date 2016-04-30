@@ -6,6 +6,7 @@ import java.io.*;
 public class MyCompiler extends DJPBaseVisitor {
     int ifCounter = 1, elseCounter = 1, whileCounter=1;
     StringBuilder sb = new StringBuilder();
+    int noOfPara=0;
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
         //System.out.println("In Body");
@@ -262,36 +263,53 @@ public class MyCompiler extends DJPBaseVisitor {
     public Object visitWhileStat(DJPParser.WhileStatContext ctx) {
 //        edited by Justin: Felt like just checking if true at the While line would make runtime easier.
         int temp = whileCounter;
-        sb.append("\nWhile Start ").append(whileCounter++);
+        sb.append("\nWhileStart ").append(whileCounter++);
         visit(ctx.whileEx);
         sb.append("\nWhile").append(" ").append(temp);
         visit(ctx.whileBody);
-        sb.append("\nGO To WhileStart").append(--whileCounter);
+        sb.append("\nGOTOWhileStart ").append(--whileCounter);
+        sb.append("\nWhileEnd ").append(whileCounter);
         return null;
     }
 
     @Override
     public Object visitFunctionCall(DJPParser.FunctionCallContext ctx) {
         visitChildren(ctx);
-        sb.append("\nGO TO ").append(ctx.getChild(0).getText());
+        sb.append("\nCall ").append(ctx.getChild(0).getText()).append(" ").append(noOfPara);
         return null;
     }
 
     @Override
     public Object visitFunctionDeclaration(DJPParser.FunctionDeclarationContext ctx) {
-        sb.append("\nFunction Name: ").append(ctx.getChild(1).getText());
-        sb.append("\nParameters Start");
-        visit(ctx.para);
-        sb.append("\nParameters End");
-        sb.append("\nFunction Body Starts");
-        visit(ctx.funcBody);
-        sb.append("\nFunction Body Ends");
+        if(ctx.getChild(1).getText().equals("main")){
+            sb.append("\nFunction Name: ").append(ctx.getChild(1).getText());
+            sb.append("\nParameters Start");
+            //if(ctx.para.getChildCount()>1){
+            visit(ctx.para);
+            sb.append("\nParameters End");
+            //}
+            sb.append("\nFunction Body Starts");
+            visit(ctx.funcBody);
+            sb.append("\nFunctionBodyEnds:").append(ctx.getChild(1).getText());
+        } else {
+            sb.append("\nFunction Name: ").append(ctx.getChild(1).getText());
+            sb.append("\nParameters Start");
+            //if(ctx.para.getChildCount()>1){
+            visit(ctx.para);
+            sb.append("\nParameters End");
+            //}
+            sb.append("\nFunction Body Starts");
+            visit(ctx.funcBody);
+            sb.append("\nFunctionBodyEnds");
+        }
+
         return null;
     }
 
     @Override
     public Object visitParameterList(DJPParser.ParameterListContext ctx) {
         sb.append("\nNo of parameters:").append(ctx.paraDec.size());
+        noOfPara = ctx.paraDec.size();
         visitChildren(ctx);
         return null;
     }
@@ -305,13 +323,14 @@ public class MyCompiler extends DJPBaseVisitor {
 
     @Override
     public Object visitReturn(DJPParser.ReturnContext ctx) {
-        sb.append("\nRETURN ").append(ctx.right.getText());
+        visit(ctx.right);
+        sb.append("\nRETURN");//.append(ctx.right.getText());
         return null;
     }
 
     public void endProgram(StringBuilder sb){
         try{
-            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/StackProg.djpclass")));
+            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/ArithmeticOperations.djpclass")));
             bwr.write(sb.toString());
             bwr.close();
         } catch(Exception e){
