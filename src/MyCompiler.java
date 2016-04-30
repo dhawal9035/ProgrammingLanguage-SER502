@@ -7,6 +7,11 @@ public class MyCompiler extends DJPBaseVisitor {
     int ifCounter = 1, elseCounter = 1, whileCounter=1;
     StringBuilder sb = new StringBuilder();
     int noOfPara=0;
+    String fileName;
+
+    MyCompiler(String fileName){
+        this.fileName = fileName;
+    }
     @Override
     public Object visitBody(DJPParser.BodyContext ctx) {
         //System.out.println("In Body");
@@ -39,6 +44,7 @@ public class MyCompiler extends DJPBaseVisitor {
             visit(ctx.e);
         } else if(ctx.var.getText().equals("END")){
             sb.append("\nENDS");
+            //return sb.toString();
             endProgram(sb);
         } else if(ctx.var.getText().equals("BEGIN")) {
             sb.append("Program Body begins");
@@ -330,7 +336,8 @@ public class MyCompiler extends DJPBaseVisitor {
 
     public void endProgram(StringBuilder sb){
         try{
-            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("Intermediates/StackProg.djpclass")));
+
+            BufferedWriter bwr = new BufferedWriter(new FileWriter(new File(fileName.substring(0,fileName.length()-4)+".djpclass")));
             bwr.write(sb.toString());
             bwr.close();
         } catch(Exception e){

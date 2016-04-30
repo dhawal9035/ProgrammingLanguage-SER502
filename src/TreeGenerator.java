@@ -11,7 +11,10 @@ import java.util.List;
  */
 public class TreeGenerator {
     public static void main(String[] args) throws Exception{
-        String fileName = "SamplePrograms/StackProg.djp";
+        if(!args[0].contains(".djp")){
+            throw new Exception("The format of file is invalid");
+        }
+        String fileName = args[0];
         ANTLRInputStream ais = new ANTLRFileStream(fileName);
         DJPLexer lexer = new DJPLexer(ais);
         CommonTokenStream cts = new CommonTokenStream(lexer);
@@ -20,8 +23,8 @@ public class TreeGenerator {
         try{
             ParseTree parseTree = parser.body();
             //Generate Tree
-            showTree(fileName);
-            new MyCompiler().visit(parseTree);
+            //showTree(fileName);
+            new MyCompiler(fileName).visit(parseTree);
         } catch(Exception e){
             e.printStackTrace();
         }
